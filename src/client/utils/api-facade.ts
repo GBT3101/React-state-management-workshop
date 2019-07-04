@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { IUserDTO } from '../../shared/IUserDTO';
 
-export function loadUsersAPI() {
-  return axios.get(`/api/users`).then(res => res.data as IUserDTO[]);
+export async function fetchFollowers(userId) {
+  return await axios.get(`/api/followers/${userId}`);
 }
