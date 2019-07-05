@@ -1,5 +1,14 @@
 .root {
     text-align: center;
+    transition: margin-top 1.5s;
+}
+
+.close {
+    margin-top: 100px;
+}
+
+.open {
+    margin-top: 0;
 }
 
 .form-style {
