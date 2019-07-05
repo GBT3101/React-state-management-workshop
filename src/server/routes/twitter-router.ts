@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser';
 import { Router } from 'express';
+import {mapFollowers} from '../mappers/followers.mapper';
 
 export function twitterApiRouter(twitter) {
   const router = Router();
@@ -7,12 +8,19 @@ export function twitterApiRouter(twitter) {
 
   router.get('/api/followers/:userId', async (req, res) => {
     const userId = req.params.userId;
-    twitter.getFollowersList({screen_name: userId},
+    const cursor = req.query.cursor || -1;
+    twitter.getFollowersList({screen_name: userId, count: 30, skip_status: true, cursor},
         e => {
         console.error(e);
         res.send('Something went wrong');
       },
-        response => res.json(response));
+        response => {
+          const parsedResponse = JSON.parse(response);
+          res.json({
+            followers: mapFollowers(parsedResponse.users),
+            nextCursor: parsedResponse.next_cursor_str,
+          });
+        });
   });
 
   return router;
