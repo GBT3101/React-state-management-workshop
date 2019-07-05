@@ -1,5 +1,7 @@
 .root {
     transition: opacity 1.5s;
+    text-align: center;
+    margin-top: 30px;
 }
 
 .visible {
@@ -8,4 +10,41 @@
 
 .hidden {
     opacity: 0;
+}
+
+.follower-container {
+    background-color: darkcyan;
+    margin: 10px auto;
+    display: flex;
+    border: darkred solid 1px;
+    border-radius: 8px;
+    min-height: 60px;
+    width: 400px;
+}
+
+.image-container {
+    height: 100%;
+    margin: 20px;
+}
+
+.follower-image {
+    margin: auto;
+    border-radius: 50%;
+}
+
+.follower-name {
+    font-size: 20px;
+    color: white;
+    margin: auto;
+}
+
+.follower-description {
+    color: white;
+    padding-top: 5px;
+    margin: auto;
+}
+
+.details-container {
+    padding: 10px;
+    width: 100%;
 }
