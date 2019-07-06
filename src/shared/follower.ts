@@ -1,4 +1,5 @@
 export interface IFollower {
+  id: string;
   name: string;
   imageSrc: string;
   description: string;
@@ -6,6 +7,7 @@ export interface IFollower {
 }
 
 export interface IRawFollowerData {
+  id: string;
   name: string;
   description: string;
   profile_image_url: string;

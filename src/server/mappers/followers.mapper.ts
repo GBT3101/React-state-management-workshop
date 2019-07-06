@@ -6,6 +6,7 @@ export function mapFollowers(rawDataFollowers: IRawFollowerData[]): IFollower[] 
 
 function mapFollower(rawDataFollower: IRawFollowerData): IFollower {
   return {
+    id: rawDataFollower.id,
     name: rawDataFollower.name,
     description: rawDataFollower.description,
     imageSrc: rawDataFollower.profile_image_url,

@@ -18,7 +18,7 @@ export function twitterApiRouter(twitter) {
           const parsedResponse = JSON.parse(response);
           res.json({
             followers: mapFollowers(parsedResponse.users),
-            nextCursor: parsedResponse.next_cursor_str,
+            nextCursor: parsedResponse.next_cursor,
           });
         });
   });

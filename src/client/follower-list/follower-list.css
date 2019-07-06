@@ -13,13 +13,20 @@
 }
 
 .follower-container {
-    background-color: darkcyan;
     margin: 10px auto;
     display: flex;
-    border: darkred solid 1px;
+    border: darkblue solid 1px;
     border-radius: 8px;
     min-height: 60px;
     width: 400px;
+}
+
+.follower-container:hover {
+    background-color: aliceblue;
+}
+
+.follower-loader {
+    opacity: .7;
 }
 
 .image-container {
@@ -33,13 +40,12 @@
 }
 
 .follower-name {
+    color: black;
     font-size: 20px;
-    color: white;
     margin: auto;
 }
 
 .follower-description {
-    color: white;
     padding-top: 5px;
     margin: auto;
 }
