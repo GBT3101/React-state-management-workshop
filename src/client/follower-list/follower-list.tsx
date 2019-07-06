@@ -48,7 +48,7 @@ export class FollowerList extends React.Component<IFollowerListProps, IFollowerL
           <div className={css.userImageContainer}>
             <img className={css.followerImage} src={userToRender.imageSrc} />
           </div>
-          <a className={css.followerName} href={userToRender.url} target='_blank'>{userToRender.name}</a>
+          <a className={css.followerName} href={userToRender.url} target='_blank'>{`@${userToRender.screenName} - ${userToRender.name}`}</a>
         <p>Lives in: {userToRender.location}</p>
         <p>Number of Followers: {userToRender.numOfFollowers}</p>
         <p>{userToRender.description}</p>
