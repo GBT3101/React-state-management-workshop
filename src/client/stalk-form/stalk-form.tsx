@@ -10,7 +10,7 @@ export class StalkForm extends React.Component<any> {
           <h2 className={css.title}>Which user would you like to stalk?</h2>
         <form className={css.formStyle}>
           <input className={css.fieldStyle} type='text' name='username' placeholder='User Name' required />
-          <button className={`${css.pushButton} ${css.blue}`} type='submit'>Stalk</button>
+          <button className={`${css.pushButton} ${css.blue}`} type='submit'>Who Follows Him</button>
         </form>
       </div>
     );
