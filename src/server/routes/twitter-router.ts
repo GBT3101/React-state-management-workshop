@@ -1,6 +1,7 @@
 import * as bodyParser from 'body-parser';
 import { Router } from 'express';
 import {mapFollowers} from '../mappers/followers.mapper';
+import {mapUser} from '../mappers/user.mapper';
 
 export function twitterApiRouter(twitter) {
   const router = Router();
@@ -21,6 +22,18 @@ export function twitterApiRouter(twitter) {
             nextCursor: parsedResponse.next_cursor,
           });
         });
+  });
+
+  router.get('/api/user/:userId', async (req, res) => {
+    const userId = req.params.userId;
+    twitter.getUser({screen_name: userId}, e => {
+      console.error(e);
+      res.send('User not exists');
+    },
+      response => {
+        const parsedResponse = JSON.parse(response);
+        res.json(mapUser(parsedResponse));
+      });
   });
 
   return router;

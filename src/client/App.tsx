@@ -3,13 +3,13 @@ import { hot } from 'react-hot-loader';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import {StalkForm} from './stalk-form/stalk-form';
 import {FollowerList} from './follower-list/follower-list';
-import {mockedFollowersResponse, mockedUserName} from '../shared/mocks';
+import {mockedFollowersResponse, mockedUser} from '../shared/mocks';
 
 const AppImpl = () => (
   <BrowserRouter>
     <div>
       <StalkForm />
-      <FollowerList userName={mockedUserName} firstFollowers={mockedFollowersResponse.followers} firstCursor={mockedFollowersResponse.nextCursor} />
+      <FollowerList user={mockedUser} firstFollowers={mockedFollowersResponse.followers} firstCursor={mockedFollowersResponse.nextCursor} />
     </div>
   </BrowserRouter>
 );

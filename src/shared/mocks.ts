@@ -1,4 +1,12 @@
-export const mockedUserName = 'GBT3101';
+export const mockedUser = {
+  name: 'Guy Ben-Moshe',
+  screenName: 'GBT3101',
+  description: 'Software Engineer @Wix & Premium Instructor @Udemy',
+  imageSrc: 'http://pbs.twimg.com/profile_images/831955018337157137/d-f4OlOB_normal.jpg',
+  numOfFollowers: 99,
+  location: 'Israel',
+  url: 'https://twitter.com/GBT3101'
+};
 
 export const mockedFollowersResponse = {
   followers: [

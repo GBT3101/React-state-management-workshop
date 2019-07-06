@@ -4,10 +4,11 @@ import { IFollower } from '../../shared/follower';
 const css = require('./follower-list.css');
 import InfiniteScroll from 'react-infinite-scroller';
 import {fetchFollowers} from '../utils/api-facade';
+import {IUser} from '../../shared/user';
 
 interface IFollowerListProps {
   firstFollowers: IFollower[];
-  userName: string;
+  user: IUser;
   firstCursor: number;
 }
 
@@ -24,22 +25,33 @@ export class FollowerList extends React.Component<IFollowerListProps, IFollowerL
       cursor: this.props.firstCursor,
       followers: this.props.firstFollowers
     };
-    console.log('state has been set, ', this.state);
   }
 
   public render() {
-    const { userName } = this.props;
+    const { user } = this.props;
     const { followers } = this.state;
 
-    const renderFollower = user => (
-      <div key={user.id} className={`${css.followerContainer} ${user.id === 'loader' ? css.followerLoader : ''}`}>
+    const renderFollower = follower => (
+      <div key={follower.id} className={`${css.followerContainer} ${follower.id === 'loader' ? css.followerLoader : ''}`}>
         <div className={css.imageContainer}>
-          <img className={css.followerImage} src={user.imageSrc} />
+          <img className={css.followerImage} src={follower.imageSrc} />
         </div>
         <div className={css.detailsContainer}>
-          <a className={css.followerName} href={user.url} target='_blank'>{user.name}</a>
-          <p className={css.followerDescription}>{user.description}</p>
+          <a className={css.followerName} href={follower.url} target='_blank'>{follower.name}</a>
+          <p className={css.followerDescription}>{follower.description}</p>
         </div>
+      </div>
+    );
+
+    const renderUser = userToRender => (
+      <div className={css.userContainer}>
+          <div className={css.userImageContainer}>
+            <img className={css.followerImage} src={userToRender.imageSrc} />
+          </div>
+          <a className={css.followerName} href={userToRender.url} target='_blank'>{userToRender.name}</a>
+        <p>Lives in: {userToRender.location}</p>
+        <p>Number of Followers: {userToRender.numOfFollowers}</p>
+        <p>{userToRender.description}</p>
       </div>
     );
 
@@ -49,10 +61,10 @@ export class FollowerList extends React.Component<IFollowerListProps, IFollowerL
 
     return (
       <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
-        { userName ? <h3>{`Here are the followers of ${userName}`}</h3> : null}
+        { user ? renderUser(user) : null}
         {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => this.loadMoreFollowers(userName)}
+          loadMore={() => this.loadMoreFollowers(user.screenName)}
           hasMore={this.state.cursor !== 0}
           loader={
             renderFollower({
@@ -68,8 +80,8 @@ export class FollowerList extends React.Component<IFollowerListProps, IFollowerL
     );
   }
 
-  private loadMoreFollowers(userName) {
-    fetchFollowers(userName, this.state.cursor).then(response => {
+  private loadMoreFollowers(userScreenName) {
+    fetchFollowers(userScreenName, this.state.cursor).then(response => {
       const { data } = response;
       if (data.followers) {
         this.setState({
@@ -78,7 +90,7 @@ export class FollowerList extends React.Component<IFollowerListProps, IFollowerL
         });
       } else {
         console.error('Something went wrong, no followers found');
-        alert('Problematic user, please refresh page');
+        alert('Problematic user, please refresh');
       }
     });
   }
