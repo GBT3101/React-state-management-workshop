@@ -50,6 +50,17 @@
     content: "";
 }
 
+.sorting-buttons-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.sorting-button {
+    height: 50%;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .blue {
     text-shadow:-1px -1px 0 #2C7982;
     background: #3EACBA;
