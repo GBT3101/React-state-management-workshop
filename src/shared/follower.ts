@@ -1,6 +1,7 @@
 export interface IFollower {
   id: string;
   name: string;
+  screenName: string;
   imageSrc: string;
   description: string;
   url: string;

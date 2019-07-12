@@ -12,7 +12,7 @@ function Follower({follower}) {
         <img className={css.followerImage} src={follower.imageSrc}/>
       </div>
       <div className={css.detailsContainer}>
-        <a className={css.followerName} href={follower.url} target='_blank'>{follower.name}</a>
+        <a className={css.followerName} href={follower.url} target='_blank'>{`${follower.screenName} - ${follower.name}`}</a>
         <p className={css.followerDescription}>{follower.description}</p>
       </div>
     </div>
@@ -34,12 +34,12 @@ function User({user}) {
   );
 }
 
-function FollowerList({user}) {
-  const [followers, setFollowers] = useState([]);
+function FollowerList({user, followers, updateFollowers}) {
   const [cursor, setCursor] = useState(-1);
   const loadingFollower = {
       id: 'loader',
       name: '',
+      screenName: '',
       description: 'Loading More Followers...',
       imageSrc: './assets/followerLoading.gif',
       url: '' };
@@ -48,7 +48,7 @@ function FollowerList({user}) {
     fetchFollowers(userScreenName).then(response => {
       const { data } = response;
       if (data.followers) {
-        setFollowers(data.followers);
+        updateFollowers({type: 'initFollowers', payload: data.followers});
         setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
@@ -61,7 +61,7 @@ function FollowerList({user}) {
     fetchFollowers(userScreenName, cursor).then(response => {
       const { data } = response;
       if (data.followers) {
-        setFollowers([...followers, ...data.followers.slice(1)]);
+        updateFollowers({type: 'addFollowers', payload: data.followers.slice(1)});
         setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');

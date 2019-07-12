@@ -10,6 +10,7 @@ function mapFollower(rawDataFollower: IRawFollowerData): IFollower {
     name: rawDataFollower.name,
     description: rawDataFollower.description,
     imageSrc: rawDataFollower.profile_image_url,
+    screenName: rawDataFollower.screen_name,
     url: `https://twitter.com/${rawDataFollower.screen_name}`
   };
 }

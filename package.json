@@ -9,7 +9,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "lint": "tslint -c tslint.json 'src/**/*.ts' 'src/**/*.tsx'",
-    "start": "node index.js",
+    "start": "npm run clean && concurrently --prefix \"[{name}]\" --names \"SERVER,CLIENT\" -c \"bgBlue.bold,bgGreen.bold\" \"npm run dev-server\" \"npm run dev-client\"",
     "start:prod": "cross-env NODE_ENV=production node index.js",
     "type-check": "tsc -p ./tsconfig.json",
     "build-client": "cross-env NODE_ENV=production TS_NODE_PROJECT=\"tsconfig-for-webpack-config.json\" webpack -p",

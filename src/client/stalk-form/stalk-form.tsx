@@ -12,7 +12,7 @@ function usePreviousScreenName(screenName) {
   return previousScreenNameRef.current;
 }
 
-export function StalkForm({setUser}) {
+export function StalkForm({setUser, sort}) {
   const [screenName, setScreenName] = useState('');
   const [showSortingButtons, setShowSortingButtons] = useState(false);
 
@@ -29,8 +29,8 @@ export function StalkForm({setUser}) {
   function SortingButtons() {
     return (
       <div className={css.sortingButtonsContainer}>
-        <button className={css.sortingButton}>Sort by name</button>
-        <button className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={() => sort({type: 'sortByName'})} className={css.sortingButton}>Sort by name</button>
+        <button onClick={() => sort({type: 'sortByScreenName'})} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 
