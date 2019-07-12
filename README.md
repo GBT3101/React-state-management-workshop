@@ -16,7 +16,7 @@ Project developed with `node 9.8.0`, `npm 5.7.1`, and tested only in `Google Chr
 git clone https://github.com/GBT3101/twitter-thing.git
 cd twitter-thing
 npm install
-npm run dev
+npm start
 ```
 
 ## Usage
