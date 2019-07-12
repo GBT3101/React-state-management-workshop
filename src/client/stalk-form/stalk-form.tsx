@@ -2,6 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {useState, useRef, useEffect} from 'react';
 import {fetchUser} from '../utils/api-facade';
+import {Actions} from '../reducer-actions';
 const css = require('./stalk-form.css');
 
 function usePreviousScreenName(screenName) {
@@ -29,8 +30,8 @@ export function StalkForm({setUser, sort}) {
   function SortingButtons() {
     return (
       <div className={css.sortingButtonsContainer}>
-        <button onClick={() => sort({type: 'sortByName'})} className={css.sortingButton}>Sort by name</button>
-        <button onClick={() => sort({type: 'sortByScreenName'})} className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={() => sort({type: Actions.sortByName})} className={css.sortingButton}>Sort by name</button>
+        <button onClick={() => sort({type: Actions.sortByScreenName})} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const css = require('./follower-list.css');
 import InfiniteScroll from 'react-infinite-scroller';
 import {fetchFollowers} from '../utils/api-facade';
+import {Actions} from '../reducer-actions';
 
 function Follower({follower}) {
   return (
@@ -48,7 +49,7 @@ function FollowerList({user, followers, updateFollowers}) {
     fetchFollowers(userScreenName).then(response => {
       const { data } = response;
       if (data.followers) {
-        updateFollowers({type: 'initFollowers', payload: data.followers});
+        updateFollowers({type: Actions.initFollowers, payload: data.followers});
         setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
@@ -61,7 +62,7 @@ function FollowerList({user, followers, updateFollowers}) {
     fetchFollowers(userScreenName, cursor).then(response => {
       const { data } = response;
       if (data.followers) {
-        updateFollowers({type: 'addFollowers', payload: data.followers.slice(1)});
+        updateFollowers({type: Actions.addFollowers, payload: data.followers.slice(1)});
         setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');

@@ -5,16 +5,17 @@ import {StalkForm} from './stalk-form/stalk-form';
 import FollowerList from './follower-list/follower-list';
 import {useReducer, useState} from 'react';
 import {IFollower} from '../shared/follower';
+import {Actions} from './reducer-actions';
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'sortByName':
+    case Actions.sortByName:
       return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name[0] > follower2.name[0] ? 1 : -1);
-    case 'sortByScreenName':
+    case Actions.sortByScreenName:
       return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName[0] > follower2.screenName[0] ? 1 : -1);
-    case 'addFollowers':
+    case Actions.addFollowers:
       return [...state, ...action.payload];
-    case 'initFollowers':
+    case Actions.initFollowers:
       return action.payload;
     default:
       return state;
