@@ -11,13 +11,14 @@ Insert your `CONSUMER_API_KEY, CONSUMER_SECRET, ACCESS_TOKEN, ACCESS_SECRET` ins
 Project developed with `node 9.8.0`, `npm 5.7.1`, and tested only on `Google Chrome`.
 
 
-## Installation
+## Installation & Execution
 ```
 git clone https://github.com/GBT3101/twitter-thing.git
 cd twitter-thing
 npm install
 npm start
 ```
+Application is availble in `localhost:3001`.
 
 ## Usage
 Upon start, enter the User Screen Name and watch it's details and followers, followers load in batches of 30, every time you scroll down another 30 will load until all followers can be seen on screen.
