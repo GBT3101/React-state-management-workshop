@@ -10,9 +10,9 @@ import {Actions} from './reducer-actions';
 const reducer = (state, action) => {
   switch (action.type) {
     case Actions.sortByName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name[0] > follower2.name[0] ? 1 : -1);
+      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
     case Actions.sortByScreenName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName[0] > follower2.screenName[0] ? 1 : -1);
+      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
     case Actions.addFollowers:
       return [...state, ...action.payload];
     case Actions.initFollowers:
