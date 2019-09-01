@@ -4,7 +4,7 @@ import {fetchUser} from '../../utils/api-facade';
 const css = require('../../styles/stalk-form.css');
 
 export function StalkForm({setUser, sort}) {
-  const screenName = 'hard coded';
+  const screenName = '';
   const setScreenName = inputScreenName => console.log(inputScreenName);
   const showSortingButtons = false;
 

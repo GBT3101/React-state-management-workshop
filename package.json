@@ -38,7 +38,10 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "find-up": "^4.0.0",
+    "mobx": "^5.13.0",
+    "mobx-react": "^6.1.3",
     "react-infinite-scroller": "^1.2.4",
+    "redux": "^4.0.4",
     "tslib": "^1.9.3",
     "twitter-node-client": "0.0.6"
   },
