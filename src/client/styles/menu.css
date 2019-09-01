@@ -1,0 +1,15 @@
+.menu-tabs {
+    display: flex;
+    justify-content: space-around;
+}
+
+.menu-tabs > * {
+    width: 33%;
+    height: 40px;
+    font-size: 20px;
+}
+
+.selected {
+    color: #FFFFFF;
+    background-color: #379AA4;
+}

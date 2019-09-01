@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import {HooksApp} from './hooks/Hooks-app';
-import {useState} from 'react';
-import {ReduxApp} from './redux/Redux-app';
-import {MobxApp} from './mobx/Mobx-app';
+import { HooksApp } from './hooks/Hooks-app';
+import { useState } from 'react';
+import { ReduxApp } from './redux/Redux-app';
+import { MobxApp } from './mobx/Mobx-app';
+const css = require('./styles/menu.css');
 
 enum AppState {
   REDUX = 'redux',
@@ -13,7 +14,7 @@ enum AppState {
 }
 
 const AppImpl = () => {
-  const [appState, setAppState] = useState('');
+  const [appState, setAppState] = useState(AppState.MOBX);
   function renderAppType(stateManagementType: AppState) {
     setAppState(stateManagementType);
   }
@@ -21,9 +22,11 @@ const AppImpl = () => {
   return (
     <BrowserRouter>
       <div>
-        <button onClick={() => renderAppType(AppState.REDUX)}>Redux</button>
-        <button onClick={() => renderAppType(AppState.MOBX)}>Mobx</button>
-        <button onClick={() => renderAppType(AppState.HOOKS)}>React Hooks</button>
+        <div className={css.menuTabs}>
+          <button className={appState === AppState.HOOKS ? css.selected : ''} onClick={() => renderAppType(AppState.HOOKS)}>React Hooks</button>
+          <button className={appState === AppState.REDUX ? css.selected : ''} onClick={() => renderAppType(AppState.REDUX)}>Redux</button>
+          <button className={appState === AppState.MOBX ? css.selected : ''} onClick={() => renderAppType(AppState.MOBX)}>Mobx</button>
+        </div>
         <div>
           {appState === AppState.HOOKS ? <HooksApp/> :
             appState === AppState.REDUX ? <ReduxApp/> :
