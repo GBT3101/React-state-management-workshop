@@ -12,5 +12,7 @@
     "types": [],
     "jsx": "react"
   },
-  "files": ["./types.d.ts", "./src/client/client.tsx"]
+  "files": ["./types.d.ts",
+    "./src/client/client.tsx"
+  ]
 }

@@ -1,10 +1,8 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-const css = require('./follower-list.css');
+const css = require('../../styles/follower-list.css');
 import InfiniteScroll from 'react-infinite-scroller';
-import {fetchFollowers} from '../utils/api-facade';
-import {Actions} from '../reducer-actions';
+import {fetchFollowers} from '../../utils/api-facade';
 
 function Follower({follower}) {
   return (
@@ -36,7 +34,8 @@ function User({user}) {
 }
 
 function FollowerList({user, followers, updateFollowers}) {
-  const [cursor, setCursor] = useState(-1);
+  const cursor = -1;
+  const setCursor = newCursor => console.log(newCursor);
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -49,7 +48,7 @@ function FollowerList({user, followers, updateFollowers}) {
     fetchFollowers(userScreenName).then(response => {
       const { data } = response;
       if (data.followers) {
-        updateFollowers({type: Actions.initFollowers, payload: data.followers});
+        updateFollowers(); // should init followers
         setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
@@ -62,7 +61,7 @@ function FollowerList({user, followers, updateFollowers}) {
     fetchFollowers(userScreenName, cursor).then(response => {
       const { data } = response;
       if (data.followers) {
-        updateFollowers({type: Actions.addFollowers, payload: data.followers.slice(1)});
+        updateFollowers(); // should add new followers
         setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
@@ -71,11 +70,9 @@ function FollowerList({user, followers, updateFollowers}) {
     });
   }
 
-  useEffect(() => {
-    if (user.screenName) {
-      loadFirstFollowers(user.screenName);
-    }
-  }, [user.screenName]);
+  if (user.screenName) {
+    loadFirstFollowers(user.screenName);
+  }
 
   return (
       <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
@@ -83,7 +80,7 @@ function FollowerList({user, followers, updateFollowers}) {
         {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
           loadMore={() => followers.length >= 30 && loadMoreFollowers(user.screenName)}
-          hasMore={cursor !== 0}
+          hasMore={false/*cursor !== 0*/}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
           {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}

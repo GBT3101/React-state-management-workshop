@@ -1,36 +1,34 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import {StalkForm} from './stalk-form/stalk-form';
-import FollowerList from './follower-list/follower-list';
-import {useReducer, useState} from 'react';
-import {IFollower} from '../shared/follower';
-import {Actions} from './reducer-actions';
+import {HooksApp} from './hooks/Hooks-app';
+import {useState} from 'react';
+import {ReduxApp} from './redux/Redux-app';
+import {MobxApp} from './mobx/Mobx-app';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case Actions.sortByName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
-    case Actions.sortByScreenName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
-    case Actions.addFollowers:
-      return [...state, ...action.payload];
-    case Actions.initFollowers:
-      return action.payload;
-    default:
-      return state;
-  }
-};
+enum AppState {
+  REDUX = 'redux',
+  MOBX = 'mobx',
+  HOOKS = 'hooks',
+}
 
 const AppImpl = () => {
-  const initialState = [];
-  const [followers, dispatch] = useReducer(reducer, initialState);
-  const [user, setUser] = useState({});
+  const [appState, setAppState] = useState('');
+  function renderAppType(stateManagementType: AppState) {
+    setAppState(stateManagementType);
+  }
+
   return (
     <BrowserRouter>
       <div>
-        <StalkForm setUser={setUser} sort={dispatch}/>
-        <FollowerList user={user} followers={followers} updateFollowers={dispatch}/>
+        <button onClick={() => renderAppType(AppState.REDUX)}>Redux</button>
+        <button onClick={() => renderAppType(AppState.MOBX)}>Mobx</button>
+        <button onClick={() => renderAppType(AppState.HOOKS)}>React Hooks</button>
+        <div>
+          {appState === AppState.HOOKS ? <HooksApp/> :
+            appState === AppState.REDUX ? <ReduxApp/> :
+              appState === AppState.MOBX ? <MobxApp/> : ``}
+        </div>
       </div>
     </BrowserRouter>
   );
