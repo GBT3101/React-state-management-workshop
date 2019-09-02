@@ -1,18 +1,29 @@
 import * as React from 'react';
 import {StalkForm} from './stalk-form/stalk-form';
 import FollowerList from './follower-list/follower-list';
+import {MobxAppStore} from './mobx-app-store';
+import {Provider} from 'mobx-react';
 
 export const MobxApp = () => {
-  const initialState = [];
-  const followers = [];
-  const user = {};
-  const setUser = () => null;
-  const dispatch = () => null;
+  const emptyUser = {
+    description: '',
+    imageSrc: '',
+    location: '',
+    name: '',
+    numOfFollowers: 0,
+    screenName: '',
+    url: ''
+  };
+  const firstCursor = -1;
+  const mobxAppStore = new MobxAppStore(emptyUser, firstCursor);
+
   return (
-    <div>
-      <StalkForm setUser={setUser} sort={dispatch}/>
-      <FollowerList user={user} followers={followers} updateFollowers={dispatch}/>
-      <div>* Powered by Mobx *</div>
-    </div>
+    <Provider mobxAppStore={mobxAppStore}>
+      <div>
+        <StalkForm/>
+        <FollowerList/>
+        <div>* Powered by Mobx *</div>
+      </div>
+    </Provider>
   );
 };

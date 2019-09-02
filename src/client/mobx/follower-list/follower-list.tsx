@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 const css = require('../../styles/follower-list.css');
 import InfiniteScroll from 'react-infinite-scroller';
-import {fetchFollowers} from '../../utils/api-facade';
+import {inject, observer} from 'mobx-react';
+import {useEffect} from 'react';
 
 function Follower({follower}) {
   return (
@@ -33,9 +34,8 @@ function User({user}) {
   );
 }
 
-function FollowerList({user, followers, updateFollowers}) {
-  const cursor = -1;
-  const setCursor = newCursor => console.log(newCursor);
+const FollowerList = inject('mobxAppStore')(observer(props => {
+  const { mobxAppStore } = props;
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -44,49 +44,25 @@ function FollowerList({user, followers, updateFollowers}) {
       imageSrc: './assets/followerLoading.gif',
       url: '' };
 
-  function loadFirstFollowers(userScreenName) {
-    fetchFollowers(userScreenName).then(response => {
-      const { data } = response;
-      if (data.followers) {
-        updateFollowers(); // should init followers
-        setCursor(data.nextCursor);
-      } else {
-        console.error('Something went wrong, no followers found');
-        alert('Problematic user, please refresh');
-      }
-    });
-  }
-
-  function loadMoreFollowers(userScreenName) {
-    fetchFollowers(userScreenName, cursor).then(response => {
-      const { data } = response;
-      if (data.followers) {
-        updateFollowers(); // should add new followers
-        setCursor(data.nextCursor);
-      } else {
-        console.error('Something went wrong, no followers found');
-        alert('Problematic user, please refresh');
-      }
-    });
-  }
-
-  if (user.screenName) {
-    loadFirstFollowers(user.screenName);
-  }
+  useEffect(() => {
+    if (mobxAppStore.user.screenName) {
+      mobxAppStore.loadFirstFollowers(mobxAppStore.user.screenName);
+    }
+  }, [mobxAppStore.user.screenName]);
 
   return (
-      <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
-        { user.name && <User user={user} /> }
-        {followers && followers.length > 0 ? <InfiniteScroll
+      <div className={`${css.root} ${mobxAppStore.followers ? css.visible : css.hidden}`}>
+        { mobxAppStore.user.name && <User user={mobxAppStore.user} /> }
+        {mobxAppStore.followers && mobxAppStore.followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => followers.length >= 30 && loadMoreFollowers(user.screenName)}
-          hasMore={false/*cursor !== 0*/}
+          loadMore={() => mobxAppStore.followers.length >= 30 && mobxAppStore.loadMoreFollowers(mobxAppStore.user.screenName)}
+          hasMore={mobxAppStore.cursor !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
-          {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
+          {mobxAppStore.followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
         </InfiniteScroll> : null}
       </div>
     );
-  }
+  }));
 
 export default FollowerList;
