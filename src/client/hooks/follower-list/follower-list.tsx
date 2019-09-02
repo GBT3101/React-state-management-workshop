@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const css = require('../../styles/follower-list.css');
 import InfiniteScroll from 'react-infinite-scroller';
 import {fetchFollowers} from '../../utils/api-facade';
-import {Actions} from '../reducer-actions';
+import {Actions} from '../reducer-actions.enum';
 
 function Follower({follower}) {
   return (

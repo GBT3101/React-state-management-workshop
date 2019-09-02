@@ -4,7 +4,7 @@ import {StalkForm} from './stalk-form/stalk-form';
 import FollowerList from './follower-list/follower-list';
 import {useReducer, useState} from 'react';
 import {IFollower} from '../../shared/follower';
-import {Actions} from './reducer-actions';
+import {Actions} from './reducer-actions.enum';
 
 const reducer = (state, action) => {
   switch (action.type) {

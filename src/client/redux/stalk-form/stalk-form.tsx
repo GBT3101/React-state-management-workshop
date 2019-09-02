@@ -1,25 +1,25 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {fetchUser} from '../../utils/api-facade';
+import {useState} from 'react';
 const css = require('../../styles/stalk-form.css');
 
-export function StalkForm({setUser, sort}) {
-  const screenName = '';
-  const setScreenName = inputScreenName => console.log(inputScreenName);
-  const showSortingButtons = false;
+export function StalkForm(props) {
+  const [screenName, setScreenName] = useState('');
+  const [showSortingButtons, setShowSortingButtons] = useState(false);
 
   function submitUser() {
     fetchUser(screenName).then(response => {
-      setUser(response.data);
-      // should show sorting buttons
+      props.setUser(response.data);
+      setShowSortingButtons(true);
     }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
   }
 
   function SortingButtons() {
     return (
       <div className={css.sortingButtonsContainer}>
-        <button onClick={() => null} className={css.sortingButton}>Sort by name</button>
-        <button onClick={() => null} className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={() => props.sortFollowersByName()} className={css.sortingButton}>Sort by name</button>
+        <button onClick={() => props.sortFollowersByScreenName()} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {useState, useRef, useEffect} from 'react';
 import {fetchUser} from '../../utils/api-facade';
-import {Actions} from '../reducer-actions';
+import {Actions} from '../reducer-actions.enum';
 const css = require('../../styles/stalk-form.css');
 
 function usePreviousScreenName(screenName) {

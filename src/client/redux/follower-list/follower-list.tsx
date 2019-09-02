@@ -34,9 +34,7 @@ function User({user}) {
   );
 }
 
-function FollowerList({user, followers, updateFollowers}) {
-  const cursor = -1;
-  const setCursor = newCursor => console.log(newCursor);
+function FollowerList(props) {
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -49,8 +47,8 @@ function FollowerList({user, followers, updateFollowers}) {
     fetchFollowers(userScreenName).then(response => {
       const { data } = response;
       if (data.followers) {
-        updateFollowers(); // should init followers
-        setCursor(data.nextCursor);
+        props.initFollowers(data.followers);
+        props.setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
         alert('Problematic user, please refresh');
@@ -59,11 +57,11 @@ function FollowerList({user, followers, updateFollowers}) {
   }
 
   function loadMoreFollowers(userScreenName) {
-    fetchFollowers(userScreenName, cursor).then(response => {
+    fetchFollowers(userScreenName, props.cursor).then(response => {
       const { data } = response;
       if (data.followers) {
-        updateFollowers(); // should add new followers
-        setCursor(data.nextCursor);
+        props.addFollowers(data.followers.slice(1));
+        props.setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
         alert('Problematic user, please refresh');
@@ -72,21 +70,21 @@ function FollowerList({user, followers, updateFollowers}) {
   }
 
   useEffect(() => {
-    if (user.screenName) {
-      loadFirstFollowers(user.screenName);
+    if (props.user.screenName) {
+      loadFirstFollowers(props.user.screenName);
     }
-  }, [user.screenName]);
+  }, [props.user.screenName]);
 
   return (
-      <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
-        { user.name && <User user={user} /> }
-        {followers && followers.length > 0 ? <InfiniteScroll
+      <div className={`${css.root} ${props.followers ? css.visible : css.hidden}`}>
+        { props.user.name && <User user={props.user} /> }
+        {props.followers && props.followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => followers.length >= 30 && loadMoreFollowers(user.screenName)}
-          hasMore={false/*cursor !== 0*/}
+          loadMore={() => props.followers.length >= 30 && loadMoreFollowers(props.user.screenName)}
+          hasMore={props.cursor !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
-          {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
+          {props.followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
         </InfiniteScroll> : null}
       </div>
     );
