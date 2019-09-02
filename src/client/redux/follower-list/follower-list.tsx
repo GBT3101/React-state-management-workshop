@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 const css = require('../../styles/follower-list.css');
 import InfiniteScroll from 'react-infinite-scroller';
-import {fetchFollowers} from '../../utils/api-facade';
+import { fetchFollowers } from '../../utils/api-facade';
+import { useEffect } from 'react';
 
 function Follower({follower}) {
   return (
@@ -70,9 +71,11 @@ function FollowerList({user, followers, updateFollowers}) {
     });
   }
 
-  if (user.screenName) {
-    loadFirstFollowers(user.screenName);
-  }
+  useEffect(() => {
+    if (user.screenName) {
+      loadFirstFollowers(user.screenName);
+    }
+  }, [user.screenName]);
 
   return (
       <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
