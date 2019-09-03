@@ -21,6 +21,7 @@ export function StalkForm({setUser, sort}) {
     const userAlreadyFetched = previousScreenName === screenName;
     if (!userAlreadyFetched) {
       fetchUser(screenName).then(response => {
+        // Change user using the injected state
         setUser(response.data);
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));

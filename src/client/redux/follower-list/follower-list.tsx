@@ -43,11 +43,11 @@ function FollowerList(props) {
       imageSrc: './assets/followerLoading.gif',
       url: '' };
 
-  function loadFirstFollowers(userScreenName) {
-    fetchFollowers(userScreenName).then(response => {
+  function loadFollowers(userScreenName) {
+    fetchFollowers(userScreenName, props.cursor).then(response => {
       const { data } = response;
       if (data.followers) {
-        props.initFollowers(data.followers);
+        props.cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
         props.setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
@@ -56,22 +56,20 @@ function FollowerList(props) {
     });
   }
 
-  function loadMoreFollowers(userScreenName) {
-    fetchFollowers(userScreenName, props.cursor).then(response => {
-      const { data } = response;
-      if (data.followers) {
-        props.addFollowers(data.followers.slice(1));
-        props.setCursor(data.nextCursor);
-      } else {
-        console.error('Something went wrong, no followers found');
-        alert('Problematic user, please refresh');
-      }
-    });
+  function loadFirstFollowers(firstFollowers) {
+    // Execute the action to load the first batch of followers.
+    props.initFollowers(firstFollowers);
+  }
+
+  function loadMoreFollowers(additionalFollowers) {
+    // Execute the action to load additional followers.
+    props.addFollowers(additionalFollowers);
   }
 
   useEffect(() => {
     if (props.user.screenName) {
-      loadFirstFollowers(props.user.screenName);
+      props.setCursor(-1);
+      loadFollowers(props.user.screenName);
     }
   }, [props.user.screenName]);
 
@@ -80,7 +78,7 @@ function FollowerList(props) {
         { props.user.name && <User user={props.user} /> }
         {props.followers && props.followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => props.followers.length >= 30 && loadMoreFollowers(props.user.screenName)}
+          loadMore={() => props.followers.length >= 30 && loadFollowers(props.user.screenName)}
           hasMore={props.cursor !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >

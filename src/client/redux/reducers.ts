@@ -2,6 +2,9 @@ import {IFollower} from '../../shared/follower';
 import {combineReducers} from 'redux';
 import {Actions} from './actions';
 
+// Create reducers for each entity - followers, user, cursor
+// Remember that each reducer has its own actions
+
 const followers = (state = [], action) => {
   switch (action.type) {
     case Actions.sortByName:

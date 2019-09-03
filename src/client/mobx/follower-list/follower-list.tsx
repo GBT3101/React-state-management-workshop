@@ -34,6 +34,7 @@ function User({user}) {
   );
 }
 
+// Injecting our store and set this component as observer
 const FollowerList = inject('mobxAppStore')(observer(props => {
   const { mobxAppStore } = props;
   const loadingFollower = {
@@ -46,6 +47,7 @@ const FollowerList = inject('mobxAppStore')(observer(props => {
 
   useEffect(() => {
     if (mobxAppStore.user.screenName) {
+      // reset followers and cursor
       mobxAppStore.setCursor(-1);
       mobxAppStore.loadFollowers();
     }
