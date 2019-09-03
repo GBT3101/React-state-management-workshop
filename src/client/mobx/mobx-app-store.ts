@@ -5,11 +5,6 @@ import {fetchFollowers} from '../utils/api-facade';
 
 export class MobxAppStore {
 
-  constructor(user, cursor) {
-    this.user = user;
-    this.cursor = cursor;
-  }
-
   @observable
   public user: IUser;
 
@@ -19,26 +14,19 @@ export class MobxAppStore {
   @observable
   public cursor: number;
 
+  constructor(user, cursor) {
+    this.user = user;
+    this.cursor = cursor;
+  }
+
   @action
   public setUser(user: IUser) {
-    console.log('set user: ', user);
     this.user = user;
   }
 
   @action
   public setCursor(newCursor: number) {
-    console.log('new cursor: ', newCursor);
     this.cursor = newCursor;
-  }
-
-  @action
-  public setFollowers(followers: IFollower[]) {
-    this.followers = followers;
-  }
-
-  @action
-  public addFollowers(followers: IFollower[]) {
-    this.followers = [...this.followers, ...followers];
   }
 
   @action
@@ -52,11 +40,11 @@ export class MobxAppStore {
   }
 
   @action
-  public loadMoreFollowers() {
+  public loadFollowers() {
     fetchFollowers(this.user.screenName, this.cursor).then(response => {
-      const { data } = response;
+      const {data} = response;
       if (data.followers) {
-        this.addFollowers(data.followers.slice(1));
+        this.cursor === -1 ? this.setFollowers(data.followers) : this.addFollowers(data.followers.slice(1));
         this.setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
@@ -66,16 +54,12 @@ export class MobxAppStore {
   }
 
   @action
-  public loadFirstFollowers() {
-    fetchFollowers(this.user.screenName).then(response => {
-      const { data } = response;
-      if (data.followers) {
-        this.setFollowers(data.followers);
-        this.setCursor(data.nextCursor);
-      } else {
-        console.error('Something went wrong, no followers found');
-        alert('Problematic user, please refresh');
-      }
-    });
+  private setFollowers(followers: IFollower[]) {
+    this.followers = followers;
+  }
+
+  @action
+  private addFollowers(followers: IFollower[]) {
+    this.followers = [...this.followers, ...followers];
   }
 }

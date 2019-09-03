@@ -46,7 +46,8 @@ const FollowerList = inject('mobxAppStore')(observer(props => {
 
   useEffect(() => {
     if (mobxAppStore.user.screenName) {
-      mobxAppStore.loadFirstFollowers(mobxAppStore.user.screenName);
+      mobxAppStore.setCursor(-1);
+      mobxAppStore.loadFollowers();
     }
   }, [mobxAppStore.user.screenName]);
 
@@ -55,7 +56,7 @@ const FollowerList = inject('mobxAppStore')(observer(props => {
         { mobxAppStore.user.name && <User user={mobxAppStore.user} /> }
         {mobxAppStore.followers && mobxAppStore.followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => mobxAppStore.followers.length >= 30 && mobxAppStore.loadMoreFollowers(mobxAppStore.user.screenName)}
+          loadMore={() => mobxAppStore.followers.length >= 30 && mobxAppStore.loadFollowers()}
           hasMore={mobxAppStore.cursor !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
