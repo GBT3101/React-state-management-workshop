@@ -19,12 +19,16 @@ npm start
 ```
 Application is availble in `localhost:3001`.
 
+## High Level Architecture
+
+![Workshop Diagram](./assets/instruction-images/Workshop%20Diagram.png)
+
 ## Instructions
 For this workshop, there are only 3 folders you should focus on:
 
-1) React Hooks - [./src/client/hooks](https://github.com/GBT3101/twitter-thing/tree/master/src/client/hooks)
-2) Redux - [./src/client/redux](https://github.com/GBT3101/twitter-thing/tree/master/src/client/redux)
-3) Mobx - [./src/client/mobx](https://github.com/GBT3101/twitter-thing/tree/master/src/client/mobx)
+1. React Hooks - [./src/client/hooks](./src/client/hooks)
+2. Redux - [./src/client/redux](./src/client/redux)
+3. Mobx - [./src/client/mobx](./src/client/mobx)
 
 Further instructions appears in each folder
 
@@ -33,3 +37,5 @@ At the top of the screen you can choose between `Mobx`, `Redux`, or `React Hooks
 Enter the User Screen Name and watch it's details and followers.
 Followers load in batches of 30, every time you scroll down another 30 will load until all followers can be seen on screen.
 After getting a user results, 2 new buttons will pop that allows you to sort followers by their name / screen name.
+
+![App Review](./assets/instruction-images/App-Review.png)
