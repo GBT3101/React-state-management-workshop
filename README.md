@@ -30,6 +30,8 @@ For this workshop, there are only 3 folders you should focus on:
 2. Redux - [./src/client/redux](./src/client/redux)
 3. Mobx - [./src/client/mobx](./src/client/mobx)
 
+You can learn about the entities being used in this project [here](./src/shared).
+
 Further instructions appears in each folder
 
 ## App Usage - Our Goal
