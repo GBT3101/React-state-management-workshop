@@ -4,6 +4,10 @@ import {fetchUser} from '../../utils/api-facade';
 import {useState} from 'react';
 const css = require('../../styles/stalk-form.css');
 
+/**
+ * @param props - since it gets the props from the connected App, we have all actions and state:
+ * E.G props.setUser, props.sortFollowersByName, props.sortFollowersByScreenName.
+ */
 export function StalkForm(props) {
   const [screenName, setScreenName] = useState('');
   const [showSortingButtons, setShowSortingButtons] = useState(false);

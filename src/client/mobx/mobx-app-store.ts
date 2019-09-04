@@ -5,6 +5,9 @@ import {fetchFollowers} from '../utils/api-facade';
 
 export class MobxAppStore {
 
+  /**
+   * observable - only an action can change it, and it will trigger new rendering for everyone who's watching the store.
+   **/
   @observable
   public user: IUser;
 
@@ -19,6 +22,9 @@ export class MobxAppStore {
     this.cursor = cursor;
   }
 
+  /**
+   * action - a function that changes an observable, can be called from any component that have the store injected.
+   **/
   @action
   public setUser(user: IUser) {
     this.user = user;

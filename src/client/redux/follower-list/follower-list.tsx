@@ -34,6 +34,10 @@ function User({user}) {
   );
 }
 
+/**
+ * @param props - since it gets the props from the connected App, we have all actions and state:
+ * E.G props.cursor, props.setCursor, props.initFollowers, props.addFollowers, props.user.
+ */
 function FollowerList(props) {
   const loadingFollower = {
       id: 'loader',

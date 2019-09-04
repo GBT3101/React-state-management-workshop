@@ -22,12 +22,14 @@ const App = props => {
     </div>);
 };
 
+// Map the general state to be props of every component that's connected with the store.
 const mapStateToProps = state => ({
   followers: state.followers,
   user: state.user,
   cursor: state.cursor,
 });
 
+// Instead of the old "dispatch" method, with ", mapDispatchToProps you get the actions as a function.
 const mapDispatchToProps = {
   sortFollowersByName,
   sortFollowersByScreenName,
@@ -37,6 +39,7 @@ const mapDispatchToProps = {
   setUser,
 };
 
+// finally, the app is connected with the "new" props. (which are the general state and the reducer actions).
 const ConnectedApp = connect(
   mapStateToProps,
   mapDispatchToProps

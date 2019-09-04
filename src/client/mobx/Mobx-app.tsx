@@ -15,6 +15,7 @@ export const MobxApp = () => {
     url: ''
   };
   const firstCursor = -1;
+  // Initializing the store with our initial state, and then injecting it as a provider to the rest of our app.
   const mobxAppStore = new MobxAppStore(emptyUser, firstCursor);
 
   return (

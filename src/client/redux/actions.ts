@@ -7,7 +7,7 @@ export enum Actions {
   setUser = 'setUser',
 }
 
-// Define action for each type.
+// Define an action for each type.
 
 export const sortFollowersByName = () => ({
   type: Actions.sortByName,

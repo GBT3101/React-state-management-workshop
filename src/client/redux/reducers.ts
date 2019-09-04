@@ -46,6 +46,7 @@ const user = (state = {
   }
 };
 
+//  Redux courtesy - since we are using one store for the entire project, we can combine the reducers to one big reducer.
 export const reducers = combineReducers({
   followers,
   cursor,
