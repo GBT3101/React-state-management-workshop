@@ -10,21 +10,25 @@ export class MobxAppStore {
    **/
 
   /*
-      1. YOUR CODE HERE
+      1. SOLUTION
       define the observables you need: (first one is free!)
    */
+  @observable
+  public user: IUser;
 
-
+  @observable
+  public followers: IFollower[];
   // UNTIL HERE
   @observable
   public cursor: number;
 
   constructor(user, cursor) {
     /*
-      2. YOUR CODE HERE
+      2. SOLUTION
       set the initial state of your observables.
      */
-
+    this.user = user;
+    this.cursor = cursor;
     // UNTIL HERE
   }
 
@@ -33,28 +37,53 @@ export class MobxAppStore {
    **/
 
   /*
-      3. YOUR CODE HERE
+      3. SOLUTION
       Define the actions you need: (first one is free!)
      */
+
+  @action
+  public setUser(user: IUser) {
+    this.user = user;
+  }
 
   @action
   public setCursor(newCursor: number) {
     this.cursor = newCursor;
   }
 
-  // @action -- todo: we don't want you to waste time on complex actions, so you can uncomment this one once you created the other needed actions.
-  // public loadFollowers() {
-  //   fetchFollowers(this.user.screenName, this.cursor).then(response => {
-  //     const {data} = response;
-  //     if (data.followers) {
-  //       this.cursor === -1 ? this.setFollowers(data.followers) : this.addFollowers(data.followers.slice(1));
-  //       this.setCursor(data.nextCursor);
-  //     } else {
-  //       console.error('Something went wrong, no followers found');
-  //       alert('Problematic user, please refresh');
-  //     }
-  //   });
-  // }
+  @action
+  public sortFollowersByName() {
+    this.followers = this.followers.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
+  }
+
+  @action
+  public sortFollowersByScreenName() {
+    this.followers = this.followers.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
+  }
+
+  @action
+  public loadFollowers() {
+    fetchFollowers(this.user.screenName, this.cursor).then(response => {
+      const {data} = response;
+      if (data.followers) {
+        this.cursor === -1 ? this.setFollowers(data.followers) : this.addFollowers(data.followers.slice(1));
+        this.setCursor(data.nextCursor);
+      } else {
+        console.error('Something went wrong, no followers found');
+        alert('Problematic user, please refresh');
+      }
+    });
+  }
+
+  @action
+  private setFollowers(followers: IFollower[]) {
+    this.followers = followers;
+  }
+
+  @action
+  private addFollowers(followers: IFollower[]) {
+    this.followers = [...this.followers, ...followers];
+  }
 
   // UNTIL HERE
 }

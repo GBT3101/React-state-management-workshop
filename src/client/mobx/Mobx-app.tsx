@@ -16,17 +16,20 @@ export const MobxApp = () => {
   };
   const firstCursor = -1;
   /*
-      5. YOUR CODE HERE
+      5. SOLUTION
       create your store and provide it using Mobx Provider
       Hint: imports are already here, you don't need anything else.
    */
+  const mobxAppStore = new MobxAppStore(emptyUser, firstCursor);
 
   return (
-    <div>
-      <StalkForm/>
-      <FollowerList/>
-      <div>* Powered by Mobx *</div>
-    </div>
+    <Provider mobxAppStore={mobxAppStore}>
+      <div>
+        <StalkForm/>
+        <FollowerList/>
+        <div>* Powered by Mobx *</div>
+      </div>
+    </Provider>
   );
 
   // UNTIL HERE

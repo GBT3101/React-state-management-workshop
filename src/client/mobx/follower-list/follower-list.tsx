@@ -35,13 +35,13 @@ function User({user}) {
 }
 
 /*
-    7. YOUR CODE HERE
+    7. SOLUTION
     Inject the store on the component.
     Define the component as Observer.
     hint: imports are already here, you don't need anything else.
  */
-const FollowerList = props => { // HERE
-  // const { mobxAppStore } = props; // todo - uncomment when successfuly injecting the store on props
+const FollowerList = inject('mobxAppStore')(observer(props => { // HERE
+  const { mobxAppStore } = props;
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -51,16 +51,16 @@ const FollowerList = props => { // HERE
       url: '' };
 
   /*
-     8. YOUR CODE HERE
+     8. SOLUTION
      Below all the functions and variables needed for this component to work, define each one using mobxAppStore:
      Just to be clear, every const below should have a setup from the mobxAppStore.
    */
 
-  const followers = [];
-  const user = {name: '', screenName: ''};
-  const cursor = Math.floor(7 + Math.random() * 4);
-  const setCursor = newCursor => newCursor;
-  const loadFollowers = () => null;
+  const followers = mobxAppStore.followers;
+  const user = mobxAppStore.user;
+  const cursor = mobxAppStore.cursor;
+  const setCursor = newCursor => mobxAppStore.setCursor(newCursor);
+  const loadFollowers = () => mobxAppStore.loadFollowers();
 
   // UNTIL HERE
 
@@ -85,6 +85,6 @@ const FollowerList = props => { // HERE
         </InfiniteScroll> : null}
       </div>
     );
-  };
+  }));
 
 export default FollowerList;

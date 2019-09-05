@@ -3,7 +3,7 @@ import {combineReducers} from 'redux';
 import {Actions} from './actions';
 
 /*
-  2. YOUR CODE HERE
+  2. SOLUTION
   Define the reducers, first one is free.
  */
 
@@ -24,14 +24,38 @@ const user = (state = {
   }
 };
 
-// const followers =
+const followers = (state = [], action) => {
+  switch (action.type) {
+    case Actions.sortByName:
+      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
+    case Actions.sortByScreenName:
+      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
+    case Actions.addFollowers:
+      return [...state, ...action.followers];
+    case Actions.initFollowers:
+      return action.followers;
+    default:
+      return state;
+  }
+};
 
-// const cursor =
+const cursor = (state = -1, action) => {
+  switch (action.type) {
+    case Actions.setCursor:
+      return action.cursor;
+    default:
+      return state;
+  }
+};
 
 // UNTIL HERE
 
 /*
-  3. YOUR CODE HERE
+  3. SOLUTION
   Combine your reducers and export it as 'reducers'.
  */
-export const reducers = () => null;
+export const reducers = combineReducers({
+  followers,
+  cursor,
+  user,
+});

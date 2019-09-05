@@ -23,10 +23,10 @@ export function StalkForm({setUser, sort}) {
       fetchUser(screenName).then(response => {
         const user = response.data;
         /*
-            5. YOUR CODE HERE
+            5. SOLUTION
             Change user using the injected state (1 line of code)
          */
-
+        setUser(user);
         // UNTIL HERE
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
@@ -35,11 +35,11 @@ export function StalkForm({setUser, sort}) {
 
   function SortingButtons() {
     /*
-        6. YOUR CODE HERE
+        6. SOLUTION
         Change the sorting functions to work with the dispatcher prop
      */
-    const sortByName = () => null; // HERE
-    const sortByScreenName = () => null; // HERE
+    const sortByName = () => sort({type: Actions.sortByName}); // HERE
+    const sortByScreenName = () => sort({type: Actions.sortByScreenName}); // HERE
     return (
       <div className={css.sortingButtonsContainer}>
         <button onClick={sortByName} className={css.sortingButton}>Sort by name</button>

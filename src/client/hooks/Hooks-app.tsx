@@ -15,9 +15,16 @@ const reducer = (state, action) => {
     case Actions.addFollowers: // first case for free, now implement the others!
       return [...state, ...action.payload];
     /*
-        ~~~~~ 1. YOUR CODE HERE ~~~~~
+        ~~~~~ 1. SOLUTION ~~~~~
         define a case for each action
      */
+    case Actions.sortByName:
+      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
+    case Actions.sortByScreenName:
+      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
+    case Actions.initFollowers:
+      return action.payload;
+     ////////////// UNTIL HERE ///////////////
     default:
       return state;
   }
@@ -25,14 +32,15 @@ const reducer = (state, action) => {
 
 export const HooksApp = () => {
   /*
-      ~~~~~ 2. YOUR CODE HERE ~~~~~~
+      ~~~~~ 2. SOLUTION ~~~~~~
       its time to use the reducer
       Initialising the reducer with an empty follower list, dispatch is a function that used in order to trigger the reducer with an action.
       also implement a simple "use state" hook for the user.
       *** CHANGE the default assignments below to a real React Hooks! ***
    */
-  const [followers, dispatch] = [[], null]; // HERE
-  const [user, setUser] = [{}, null]; // HERE
+  const initialState = [];
+  const [followers, dispatch] = useReducer(reducer, initialState); // HERE
+  const [user, setUser] = useState({}); // HERE
 
   return (
     <div>

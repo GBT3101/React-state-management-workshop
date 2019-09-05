@@ -16,13 +16,13 @@ function usePreviousScreenName(screenName) {
 }
 
 /*
-    5. YOUR CODE HERE
+    5. SOLUTION
     Inject the store on the component.
     Define the component as Observer.
     hint: imports are already here, you don't need anything else.
  */
-export const StalkForm = props => { // HERE
-  // const { mobxAppStore } = props; // todo - uncomment when successfuly injecting the store on props
+export const StalkForm = inject('mobxAppStore')(observer(props => { // HERE
+  const { mobxAppStore } = props;
   const [screenName, setScreenName] = useState('');
   const [showSortingButtons, setShowSortingButtons] = useState(false);
 
@@ -32,10 +32,10 @@ export const StalkForm = props => { // HERE
       fetchUser(screenName).then(response => {
         const user = response.data;
         /*
-          6. YOUR CODE HERE
+          6. SOLUTION
           set the user using the store.
          */
-
+        mobxAppStore.setUser(user);
         // UNTIL HERE
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
@@ -44,15 +44,15 @@ export const StalkForm = props => { // HERE
 
   function SortingButtons() {
     /*
-        9. YOUR CODE HERE
+        9. SOLUTION
         Define the sorting functions using the mobxAppStore.
      */
-    const sortByName = () => null; // HERE
-    const sortByScreenName = () => null; // HERE
+    const sortByName = () => mobxAppStore.sortFollowersByName(); // HERE
+    const sortByScreenName = () => mobxAppStore.sortFollowersByScreenName(); // HERE
     return (
       <div className={css.sortingButtonsContainer}>
-        <button onClick={() => sortByName()} className={css.sortingButton}>Sort by name</button>
-        <button onClick={() => sortByScreenName()} className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={sortByName} className={css.sortingButton}>Sort by name</button>
+        <button onClick={sortByScreenName} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 
@@ -68,4 +68,4 @@ export const StalkForm = props => { // HERE
       </div>
     </div>
   );
-};
+}));

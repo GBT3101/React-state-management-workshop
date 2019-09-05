@@ -60,18 +60,18 @@ function FollowerList({user, followers, updateFollowers}) {
 
   function loadFirstFollowers(firstFollowers) {
     /*
-        3. YOUR CODE HERE
+        3. SOLUTION
         Init the followers here. Hint - only 1 line of code needed.
      */
-    // HERE
+    updateFollowers({type: Actions.initFollowers, payload: firstFollowers}); // HERE
   }
 
   function loadMoreFollowers(additionalFollowers) {
     /*
-        4. YOUR CODE HERE
+        4. SOLUTION
         add additional followers here. Hint - only 1 line of code needed.
      */
-    // HERE
+    updateFollowers({type: Actions.addFollowers, payload: additionalFollowers}); // HERE
   }
 
   useEffect(() => {
