@@ -22,3 +22,4 @@ First, change the initial state management of the app in [App.tsx](../App.tsx) s
 7) inject the store on [follower-list](./follower-list/follower-list.tsx) main component, also define it as `observer`. just like you did for [stalk-form](./stalk-form/stalk-form.tsx).
 8) Define the 5 consts using the store that will make the [follower-list](./follower-list/follower-list.tsx) component work. By now if everything done right you should be able to insert a user screen name and all its followers be shown.
 9) Define the sorting functions in [stalk-form](./stalk-form/stalk-form.tsx).
+10) Verify that the app works as expected :) Good job!

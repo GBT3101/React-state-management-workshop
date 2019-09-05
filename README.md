@@ -12,8 +12,8 @@ Project developed with `node 9.8.0`, `npm 5.7.1`, and tested only on `Google Chr
 
 ## Installation & Execution
 ```
-git clone https://github.com/GBT3101/twitter-thing.git
-cd twitter-thing
+git clone https://github.com/GBT3101/React-state-management-workshop.git
+cd React-state-management-workshop
 npm install
 npm start
 ```
@@ -36,9 +36,11 @@ Further instructions appears in each folder, it's highly recommended to complete
 
 ### Tips
 
+* Every package you need is already installed, do not install extra node modeules.
 * In every place you need to write code you will have a comment `YOUR CODE HERE` with the number of the task and hints, you should write code until the `// UNTIL HERE` comment.
 * Specific lines you need to edit are attached with a `// HERE` Comment.
 * Follow the instructions carefuly task by task, read attached resources when you are stuck.
+* Imports are already in every file, you don't need extra imports in this workshop.
 
 ## App Usage - Our Goal
 At the top of the screen you can choose between `Mobx`, `Redux`, or `React Hooks` as your state management system.

@@ -51,8 +51,9 @@ function FollowerList(props) {
     fetchFollowers(userScreenName, props.cursor).then(response => {
       const { data } = response;
       if (data.followers) {
-        props.cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
-        props.setCursor(data.nextCursor);
+        // todo - uncomment this 2 lines after you have the state and actions on props.
+        // props.cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
+        // props.setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
         alert('Problematic user, please refresh');
@@ -62,31 +63,49 @@ function FollowerList(props) {
 
   function loadFirstFollowers(firstFollowers) {
     // Execute the action to load the first batch of followers.
-    props.initFollowers(firstFollowers);
+    /*
+      8. YOUR CODE HERE
+      init followers here (using props)
+     */
   }
 
   function loadMoreFollowers(additionalFollowers) {
     // Execute the action to load additional followers.
-    props.addFollowers(additionalFollowers);
+    /*
+      9. YOUR CODE HERE
+      load more followers here (using props)
+     */
   }
 
+  /*
+      10. YOUR CODE HERE
+      just like you did for Mobx, insert the correct values for these 4 consts using your props.
+   */
+
+  const followers = [];
+  const user = {name: '', screenName: ''};
+  const cursor = Math.floor(7 + Math.random() * 4);
+  const setCursor = newCursor => newCursor;
+
+  // UNTIL HERE
+
   useEffect(() => {
-    if (props.user.screenName) {
-      props.setCursor(-1);
-      loadFollowers(props.user.screenName);
+    if (user.screenName) {
+      setCursor(-1);
+      loadFollowers(user.screenName);
     }
-  }, [props.user.screenName]);
+  }, [user.screenName]);
 
   return (
-      <div className={`${css.root} ${props.followers ? css.visible : css.hidden}`}>
-        { props.user.name && <User user={props.user} /> }
-        {props.followers && props.followers.length > 0 ? <InfiniteScroll
+      <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
+        { user.name && <User user={user} /> }
+        {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => props.followers.length >= 30 && loadFollowers(props.user.screenName)}
-          hasMore={props.cursor !== 0}
+          loadMore={() => followers.length >= 30 && loadFollowers(user.screenName)}
+          hasMore={cursor !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
-          {props.followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
+          {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
         </InfiniteScroll> : null}
       </div>
     );

@@ -14,16 +14,26 @@ export function StalkForm(props) {
 
   function submitUser() {
     fetchUser(screenName).then(response => {
-      props.setUser(response.data);
+      const user = response.data;
+      /*
+        6. YOUR CODE HERE
+        Set the user using the action you have on the props.
+       */
       setShowSortingButtons(true);
     }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
   }
 
   function SortingButtons() {
+    /*
+      11. YOUR CODE HERE
+      Implement the sorting functions
+     */
+    const sortByName = () => null;
+    const sortByScreenName = () => null;
     return (
       <div className={css.sortingButtonsContainer}>
-        <button onClick={() => props.sortFollowersByName()} className={css.sortingButton}>Sort by name</button>
-        <button onClick={() => props.sortFollowersByScreenName()} className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={() => sortByName()} className={css.sortingButton}>Sort by name</button>
+        <button onClick={() => sortByScreenName()} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 

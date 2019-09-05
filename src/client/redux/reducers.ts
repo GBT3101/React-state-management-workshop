@@ -2,32 +2,10 @@ import {IFollower} from '../../shared/follower';
 import {combineReducers} from 'redux';
 import {Actions} from './actions';
 
-// Create reducers for each entity - followers, user, cursor
-// Remember that each reducer has its own actions
-
-const followers = (state = [], action) => {
-  switch (action.type) {
-    case Actions.sortByName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
-    case Actions.sortByScreenName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
-    case Actions.addFollowers:
-      return [...state, ...action.followers];
-    case Actions.initFollowers:
-      return action.followers;
-    default:
-      return state;
-  }
-};
-
-const cursor = (state = -1, action) => {
-  switch (action.type) {
-    case Actions.setCursor:
-      return action.cursor;
-    default:
-      return state;
-  }
-};
+/*
+  2. YOUR CODE HERE
+  Define the reducers, first one is free.
+ */
 
 const user = (state = {
   description: '',
@@ -46,9 +24,14 @@ const user = (state = {
   }
 };
 
-//  Redux courtesy - since we are using one store for the entire project, we can combine the reducers to one big reducer.
-export const reducers = combineReducers({
-  followers,
-  cursor,
-  user,
-});
+// const followers =
+
+// const cursor =
+
+// UNTIL HERE
+
+/*
+  3. YOUR CODE HERE
+  Combine your reducers and export it as 'reducers'.
+ */
+export const reducers = () => null;
