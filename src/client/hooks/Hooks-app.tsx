@@ -11,25 +11,29 @@ import {Actions} from './reducer-actions.enum';
  * Since it's a simple scenario, we can actually create a small local state management system without a store.
  */
 const reducer = (state, action) => {
-  switch (action.type) { // Every action has type, some has payload.
-    case Actions.sortByName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
-    case Actions.sortByScreenName:
-      return state.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
-    case Actions.addFollowers:
+  switch (action.type) {
+    case Actions.addFollowers: // first case for free, now implement the others!
       return [...state, ...action.payload];
-    case Actions.initFollowers:
-      return action.payload;
+    /*
+        ~~~~~ 1. YOUR CODE HERE ~~~~~
+        define a case for each action
+     */
     default:
       return state;
   }
 };
 
 export const HooksApp = () => {
-  const initialState = [];
-  // Initialising the reducer with an empty follower list, dispatch is a function that used in order to trigger the reducer with an action.
-  const [followers, dispatch] = useReducer(reducer, initialState);
-  const [user, setUser] = useState({}); // since the only use case with user is to set it, we can just use the "use state" react hook.
+  /*
+      ~~~~~ 2. YOUR CODE HERE ~~~~~~
+      its time to use the reducer
+      Initialising the reducer with an empty follower list, dispatch is a function that used in order to trigger the reducer with an action.
+      also implement a simple "use state" hook for the user.
+      *** CHANGE the default assignments below to a real React Hooks! ***
+   */
+  const [followers, dispatch] = [[], null]; // HERE
+  const [user, setUser] = [{}, null]; // HERE
+
   return (
     <div>
       <StalkForm setUser={setUser} sort={dispatch}/>

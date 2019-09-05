@@ -21,18 +21,28 @@ export function StalkForm({setUser, sort}) {
     const userAlreadyFetched = previousScreenName === screenName;
     if (!userAlreadyFetched) {
       fetchUser(screenName).then(response => {
-        // Change user using the injected state
-        setUser(response.data);
+        const user = response.data;
+        /*
+            5. YOUR CODE HERE
+            Change user using the injected state (1 line of code)
+         */
+        // HERE
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
     }
   }
 
   function SortingButtons() {
+    /*
+        6. YOUR CODE HERE
+        Change the sorting functions to work with the dispatcher prop
+     */
+    const sortByName = () => null; // HERE
+    const sortByScreenName = () => null; // HERE
     return (
       <div className={css.sortingButtonsContainer}>
-        <button onClick={() => sort({type: Actions.sortByName})} className={css.sortingButton}>Sort by name</button>
-        <button onClick={() => sort({type: Actions.sortByScreenName})} className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={sortByName} className={css.sortingButton}>Sort by name</button>
+        <button onClick={sortByScreenName} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 

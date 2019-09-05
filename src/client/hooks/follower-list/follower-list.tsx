@@ -59,13 +59,19 @@ function FollowerList({user, followers, updateFollowers}) {
   }
 
   function loadFirstFollowers(firstFollowers) {
-    // Execute the action to load the first batch of followers.
-    updateFollowers({type: Actions.initFollowers, payload: firstFollowers});
+    /*
+        3. YOUR CODE HERE
+        Init the followers here. Hint - only 1 line of code needed.
+     */
+    // HERE
   }
 
   function loadMoreFollowers(additionalFollowers) {
-    // Execute the action to load additional followers.
-    updateFollowers({type: Actions.addFollowers, payload: additionalFollowers});
+    /*
+        4. YOUR CODE HERE
+        add additional followers here. Hint - only 1 line of code needed.
+     */
+    // HERE
   }
 
   useEffect(() => {
