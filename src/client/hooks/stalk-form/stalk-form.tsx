@@ -42,8 +42,8 @@ export function StalkForm({setUser, sort}) {
     const sortByScreenName = () => null; // HERE
     return (
       <div className={css.sortingButtonsContainer}>
-        <button onClick={sortByName} className={css.sortingButton}>Sort by name</button>
-        <button onClick={sortByScreenName} className={css.sortingButton}>Sort by screen name</button>
+        <button onClick={sortByName()} className={css.sortingButton}>Sort by name</button>
+        <button onClick={sortByScreenName()} className={css.sortingButton}>Sort by screen name</button>
       </div>);
   }
 
