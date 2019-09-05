@@ -34,9 +34,14 @@ function User({user}) {
   );
 }
 
-// Injecting our store and set this component as observer
-const FollowerList = inject('mobxAppStore')(observer(props => {
-  const { mobxAppStore } = props;
+/*
+    7. YOUR CODE HERE
+    Inject the store on the component.
+    Define the component as Observer.
+    hint: imports are already here, you don't need anything else.
+ */
+const FollowerList = props => { // HERE
+  // const { mobxAppStore } = props; // todo - uncomment when successfuly injecting the store on props
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -45,27 +50,41 @@ const FollowerList = inject('mobxAppStore')(observer(props => {
       imageSrc: './assets/followerLoading.gif',
       url: '' };
 
+  /*
+     8. YOUR CODE HERE
+     Below all the functions and variables needed for this component to work, define each one using mobxAppStore:
+     Just to be clear, every const below should have a setup from the mobxAppStore.
+   */
+
+  const followers = [];
+  const user = {name: '', screenName: ''};
+  const cursor = Math.floor(7 + Math.random() * 4);
+  const setCursor = newCursor => newCursor;
+  const loadFollowers = () => null;
+
+  // UNTIL HERE
+
   useEffect(() => {
-    if (mobxAppStore.user.screenName) {
+    if (user.screenName) {
       // reset followers and cursor
-      mobxAppStore.setCursor(-1);
-      mobxAppStore.loadFollowers();
+      setCursor(-1);
+      loadFollowers();
     }
-  }, [mobxAppStore.user.screenName]);
+  }, [user.screenName]);
 
   return (
-      <div className={`${css.root} ${mobxAppStore.followers ? css.visible : css.hidden}`}>
-        { mobxAppStore.user.name && <User user={mobxAppStore.user} /> }
-        {mobxAppStore.followers && mobxAppStore.followers.length > 0 ? <InfiniteScroll
+      <div className={`${css.root} ${followers ? css.visible : css.hidden}`}>
+        { user.name && <User user={user} /> }
+        {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
-          loadMore={() => mobxAppStore.followers.length >= 30 && mobxAppStore.loadFollowers()}
-          hasMore={mobxAppStore.cursor !== 0}
+          loadMore={() => followers.length >= 30 && loadFollowers()}
+          hasMore={cursor !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
-          {mobxAppStore.followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
+          {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}
         </InfiniteScroll> : null}
       </div>
     );
-  }));
+  };
 
 export default FollowerList;

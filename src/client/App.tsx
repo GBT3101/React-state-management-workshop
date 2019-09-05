@@ -14,7 +14,7 @@ enum AppState {
 }
 
 const AppImpl = () => {
-  const [appState, setAppState] = useState(AppState.REDUX);
+  const [appState, setAppState] = useState(AppState.REDUX); // HERE > change the initial state-management system of the app.
   function renderAppType(stateManagementType: AppState) {
     setAppState(stateManagementType);
   }

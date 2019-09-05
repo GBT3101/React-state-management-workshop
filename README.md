@@ -27,12 +27,18 @@ Application is availble in `localhost:3001`.
 For this workshop, there are only 3 folders you should focus on:
 
 1. React Hooks - [./src/client/hooks](./src/client/hooks)
-2. Redux - [./src/client/redux](./src/client/redux)
-3. Mobx - [./src/client/mobx](./src/client/mobx)
+2. Mobx - [./src/client/mobx](./src/client/mobx)
+3. Redux - [./src/client/redux](./src/client/redux)
 
 You can learn about the entities being used in this project [here](./src/shared).
 
-Further instructions appears in each folder
+Further instructions appears in each folder, it's highly recommended to complete the workshop in the order defined above.
+
+### Tips
+
+* In every place you need to write code you will have a comment `YOUR CODE HERE` with the number of the task and hints, you should write code until the `// UNTIL HERE` comment.
+* Specific lines you need to edit are attached with a `// HERE` Comment.
+* Follow the instructions carefuly task by task, read attached resources when you are stuck.
 
 ## App Usage - Our Goal
 At the top of the screen you can choose between `Mobx`, `Redux`, or `React Hooks` as your state management system.

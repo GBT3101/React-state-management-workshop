@@ -26,7 +26,8 @@ export function StalkForm({setUser, sort}) {
             5. YOUR CODE HERE
             Change user using the injected state (1 line of code)
          */
-        // HERE
+
+        // UNTIL HERE
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
     }

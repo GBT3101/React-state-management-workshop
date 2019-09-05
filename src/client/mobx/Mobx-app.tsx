@@ -15,16 +15,19 @@ export const MobxApp = () => {
     url: ''
   };
   const firstCursor = -1;
-  // Initializing the store with our initial state, and then injecting it as a provider to the rest of our app.
-  const mobxAppStore = new MobxAppStore(emptyUser, firstCursor);
+  /*
+      5. YOUR CODE HERE
+      create your store and provide it using Mobx Provider
+      Hint: imports are already here, you don't need anything else.
+   */
 
   return (
-    <Provider mobxAppStore={mobxAppStore}>
-      <div>
-        <StalkForm/>
-        <FollowerList/>
-        <div>* Powered by Mobx *</div>
-      </div>
-    </Provider>
+    <div>
+      <StalkForm/>
+      <FollowerList/>
+      <div>* Powered by Mobx *</div>
+    </div>
   );
+
+  // UNTIL HERE
 };

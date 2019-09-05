@@ -6,7 +6,7 @@ Learn about the basics of [React Hooks](https://reactjs.org/docs/hooks-intro.htm
 
 ## Instructions
 
-First, change the initial state management of the app in [App.tsx](../App.tsx), every time the app refreshes it will start in `React Hooks` mode.
+First, change the initial state management of the app in [App.tsx](../App.tsx) so every time the app refreshes it will start in `React Hooks` mode.
 
 1) Start by knowing the action types [here](./reducer-actions.enum.ts).
 2) Fill the gaps in [Hooks-app](./Hooks-app.tsx), you need to complete the reducer and use React Hooks inside `HooksApp` function (specifics in the file).
