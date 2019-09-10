@@ -22,20 +22,20 @@ export const sortFollowersByScreenName = () => ({
 
 export const addFollowers = newFollowers => ({
   type: Actions.addFollowers,
-  followers: newFollowers,
+  payload: newFollowers,
 });
 
 export const initFollowers = firstFollowers => ({
   type: Actions.initFollowers,
-  followers: firstFollowers,
+  payload: firstFollowers,
 });
 
 export const setFollowersBatchIndex = newFollowersBatchIndex => ({
   type: Actions.setFollowersBatchIndex,
-  followersBatchIndex: newFollowersBatchIndex,
+  payload: newFollowersBatchIndex,
 });
 
 export const setUser = newUser => ({
   type: Actions.setUser,
-  user: newUser,
+  payload: newUser,
 });

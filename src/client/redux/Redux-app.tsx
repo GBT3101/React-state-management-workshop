@@ -34,18 +34,18 @@ const mapStateToProps = state => ({
 });
 
 // Instead of the old "dispatch" method, with ", mapDispatchToProps you get the actions as a function.
-const mapDispatchToProps = {
+const mapDispatchToProps = dispatch => ({
   /*
-    5. SOLUTION
-    map your dispatched actions to props.
-   */
-  sortFollowersByName,
-  sortFollowersByScreenName,
-  addFollowers,
-  initFollowers,
-  setFollowersBatchIndex,
-  setUser,
-};
+  5. SOLUTION
+  map your dispatched actions to props.
+ */
+  sortFollowersByName: () => dispatch(sortFollowersByName()),
+  sortFollowersByScreenName: () => dispatch(sortFollowersByScreenName()),
+  addFollowers: newFollowers => dispatch(addFollowers(newFollowers)),
+  initFollowers: firstFollowers => dispatch(initFollowers(firstFollowers)),
+  setFollowersBatchIndex: newFollowersBatchIndex => dispatch(setFollowersBatchIndex(newFollowersBatchIndex)),
+  setUser: newUser => dispatch(setUser(newUser)),
+});
 
 // finally, the app is connected with the "new" props. (which are the general state and the reducer actions).
 
