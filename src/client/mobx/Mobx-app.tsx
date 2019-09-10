@@ -14,7 +14,7 @@ export const MobxApp = () => {
     screenName: '',
     url: ''
   };
-  const firstCursor = -1;
+  const firstFollowersBatchIndex = -1;
   /*
       4. YOUR CODE HERE
       create your store and provide it using Mobx Provider

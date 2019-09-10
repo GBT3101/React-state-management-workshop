@@ -26,7 +26,7 @@ const user = (state = {
 
 // const followers =
 
-// const cursor =
+// const followersBatchIndex =
 
 // UNTIL HERE
 

@@ -17,9 +17,9 @@ export class MobxAppStore {
 
   // UNTIL HERE
   @observable
-  public cursor: number;
+  public followersBatchIndex: number;
 
-  constructor(user, cursor) {
+  constructor(user, followersBatchIndex) {
     /*
       2. YOUR CODE HERE
       set the initial state of your observables.
@@ -38,17 +38,17 @@ export class MobxAppStore {
      */
 
   @action
-  public setCursor(newCursor: number) {
-    this.cursor = newCursor;
+  public setFollowersBatchIndex(newFollowersBatchIndex: number) {
+    this.followersBatchIndex = newFollowersBatchIndex;
   }
 
   // @action -- todo: we don't want you to waste time on complex actions, so you can uncomment this one once you created the other needed actions.
   // public loadFollowers() {
-  //   fetchFollowers(this.user.screenName, this.cursor).then(response => {
+  //   fetchFollowers(this.user.screenName, this.followersBatchIndex).then(response => {
   //     const {data} = response;
   //     if (data.followers) {
-  //       this.cursor === -1 ? this.setFollowers(data.followers) : this.addFollowers(data.followers.slice(1));
-  //       this.setCursor(data.nextCursor);
+  //       this.followersBatchIndex === -1 ? this.setFollowers(data.followers) : this.addFollowers(data.followers.slice(1));
+  //       this.setFollowersBatchIndex(data.nextFollowersBatchIndex);
   //     } else {
   //       console.error('Something went wrong, no followers found');
   //       alert('Problematic user, please refresh');

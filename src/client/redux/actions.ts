@@ -3,7 +3,7 @@ export enum Actions {
   sortByScreenName = 'sortByScreenName',
   addFollowers = 'addFollowers',
   initFollowers = 'initFollowers',
-  setCursor = 'setCursor',
+  setFollowersBatchIndex = 'setFollowersBatchIndex',
   setUser = 'setUser',
 }
 

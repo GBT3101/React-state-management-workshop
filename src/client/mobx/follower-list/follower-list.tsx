@@ -58,16 +58,16 @@ const FollowerList = props => { // HERE
 
   const followers = [];
   const user = {name: '', screenName: ''};
-  const cursor = Math.floor(7 + Math.random() * 4);
-  const setCursor = newCursor => newCursor;
+  const followersBatchIndex = Math.floor(7 + Math.random() * 4);
+  const setFollowersBatchIndex = newFollowersBatchIndex => newFollowersBatchIndex;
   const loadFollowers = () => null;
 
   // UNTIL HERE
 
   useEffect(() => {
     if (user.screenName) {
-      // reset followers and cursor
-      setCursor(-1);
+      // reset followers and followersBatchIndex
+      setFollowersBatchIndex(-1);
       loadFollowers();
     }
   }, [user.screenName]);
@@ -78,7 +78,7 @@ const FollowerList = props => { // HERE
         {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
           loadMore={() => followers.length >= 30 && loadFollowers()}
-          hasMore={cursor !== 0}
+          hasMore={followersBatchIndex !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
           {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}

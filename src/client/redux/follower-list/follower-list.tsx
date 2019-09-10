@@ -36,7 +36,7 @@ function User({user}) {
 
 /**
  * @param props - since it gets the props from the connected App, we have all actions and state:
- * E.G props.cursor, props.setCursor, props.initFollowers, props.addFollowers, props.user.
+ * E.G props.followersBatchIndex, props.setFollowersBatchIndex, props.initFollowers, props.addFollowers, props.user.
  */
 function FollowerList(props) {
   const loadingFollower = {
@@ -48,12 +48,12 @@ function FollowerList(props) {
       url: '' };
 
   function loadFollowers(userScreenName) {
-    fetchFollowers(userScreenName, props.cursor).then(response => {
+    fetchFollowers(userScreenName, props.followersBatchIndex).then(response => {
       const { data } = response;
       if (data.followers) {
         // todo - uncomment this 2 lines after you have the state and actions on props.
-        // props.cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
-        // props.setCursor(data.nextCursor);
+        // props.followersBatchIndex === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
+        // props.setFollowersBatchIndex(data.nextFollowersBatchIndex);
       } else {
         console.error('Something went wrong, no followers found');
         alert('Problematic user, please refresh');
@@ -84,14 +84,14 @@ function FollowerList(props) {
 
   const followers = [];
   const user = {name: '', screenName: ''};
-  const cursor = Math.floor(7 + Math.random() * 4);
-  const setCursor = newCursor => newCursor;
+  const followersBatchIndex = Math.floor(7 + Math.random() * 4);
+  const setFollowersBatchIndex = newFollowersBatchIndex => newFollowersBatchIndex;
 
   // UNTIL HERE
 
   useEffect(() => {
     if (user.screenName) {
-      setCursor(-1);
+      setFollowersBatchIndex(-1);
       loadFollowers(user.screenName);
     }
   }, [user.screenName]);
@@ -102,7 +102,7 @@ function FollowerList(props) {
         {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
           loadMore={() => followers.length >= 30 && loadFollowers(user.screenName)}
-          hasMore={cursor !== 0}
+          hasMore={followersBatchIndex !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
           {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}

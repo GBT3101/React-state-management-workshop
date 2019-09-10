@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import {
   addFollowers,
   // initFollowers,
-  // setCursor,
+  // setFollowersBatchIndex,
   // setUser,
   // sortFollowersByName,
   // sortFollowersByScreenName

@@ -9,7 +9,7 @@ export function twitterApiRouter(twitter) {
 
   router.get('/api/followers/:userScreenName', async (req, res) => {
     const userScreenName = req.params.userScreenName;
-    const cursor = req.query.cursor || -1;
+    const cursor = req.query.followersBatchIndex || -1;
     twitter.getFollowersList({screen_name: userScreenName, count: 30, skip_status: true, cursor},
         e => {
         console.error(e);
@@ -20,7 +20,7 @@ export function twitterApiRouter(twitter) {
           const parsedResponse = JSON.parse(response);
           res.json({
             followers: mapFollowers(parsedResponse.users),
-            nextCursor: parsedResponse.next_cursor,
+            nextFollowersBatchIndex: parsedResponse.next_cursor, // The next_cursor is the cursor that you should send to the endpoint to receive the next batch of responses
           });
         });
   });
