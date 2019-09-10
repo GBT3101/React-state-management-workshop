@@ -20,7 +20,7 @@ export function twitterApiRouter(twitter) {
           const parsedResponse = JSON.parse(response);
           res.json({
             followers: mapFollowers(parsedResponse.users),
-            nextFollowersBatchIndex: parsedResponse.next_cursor,
+            nextFollowersBatchIndex: parsedResponse.next_cursor, // The next_cursor is the cursor that you should send to the endpoint to receive the next batch of responses
           });
         });
   });
