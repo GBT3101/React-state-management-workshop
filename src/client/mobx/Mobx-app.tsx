@@ -14,13 +14,13 @@ export const MobxApp = () => {
     screenName: '',
     url: ''
   };
-  const firstCursor = -1;
+  const firstFollowersBatchIndex = -1;
   /*
       5. SOLUTION
       create your store and provide it using Mobx Provider
       Hint: imports are already here, you don't need anything else.
    */
-  const mobxAppStore = new MobxAppStore(emptyUser, firstCursor);
+  const mobxAppStore = new MobxAppStore(emptyUser, firstFollowersBatchIndex);
 
   return (
     <Provider mobxAppStore={mobxAppStore}>

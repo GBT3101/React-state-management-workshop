@@ -3,7 +3,7 @@ export enum Actions {
   sortByScreenName = 'sortByScreenName',
   addFollowers = 'addFollowers',
   initFollowers = 'initFollowers',
-  setCursor = 'setCursor',
+  setFollowersBatchIndex = 'setFollowersBatchIndex',
   setUser = 'setUser',
 }
 
@@ -30,9 +30,9 @@ export const initFollowers = firstFollowers => ({
   followers: firstFollowers,
 });
 
-export const setCursor = newCursor => ({
-  type: Actions.setCursor,
-  cursor: newCursor,
+export const setFollowersBatchIndex = newFollowersBatchIndex => ({
+  type: Actions.setFollowersBatchIndex,
+  followersBatchIndex: newFollowersBatchIndex,
 });
 
 export const setUser = newUser => ({

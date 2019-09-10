@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import {
   addFollowers,
   initFollowers,
-  setCursor,
+  setFollowersBatchIndex,
   setUser,
   sortFollowersByName,
   sortFollowersByScreenName
@@ -30,7 +30,7 @@ const mapStateToProps = state => ({
    */
   followers: state.followers,
   user: state.user,
-  cursor: state.cursor,
+  followersBatchIndex: state.followersBatchIndex,
 });
 
 // Instead of the old "dispatch" method, with ", mapDispatchToProps you get the actions as a function.
@@ -43,7 +43,7 @@ const mapDispatchToProps = {
   sortFollowersByScreenName,
   addFollowers,
   initFollowers,
-  setCursor,
+  setFollowersBatchIndex,
   setUser,
 };
 

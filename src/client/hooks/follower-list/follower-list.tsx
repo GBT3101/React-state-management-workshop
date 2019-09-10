@@ -36,7 +36,7 @@ function User({user}) {
 }
 
 function FollowerList({user, followers, updateFollowers}) {
-  const [cursor, setCursor] = useState(-1);
+  const [followersBatchIndex, setFollowersBatchIndex] = useState(-1);
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -46,11 +46,11 @@ function FollowerList({user, followers, updateFollowers}) {
       url: '' };
 
   function loadFollowers(userScreenName) {
-    fetchFollowers(userScreenName, cursor).then(response => {
+    fetchFollowers(userScreenName, followersBatchIndex).then(response => {
       const { data } = response;
       if (data.followers) {
-        cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
-        setCursor(data.nextCursor);
+        followersBatchIndex === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
+        setFollowersBatchIndex(data.nextFollowersBatchIndex);
       } else {
         console.error('Something went wrong, no followers found');
         alert('Problematic user, please refresh');
@@ -76,7 +76,7 @@ function FollowerList({user, followers, updateFollowers}) {
 
   useEffect(() => {
     if (user.screenName) {
-      setCursor(-1);
+      setFollowersBatchIndex(-1);
       loadFollowers(user.screenName);
     }
   }, [user.screenName]);
@@ -87,7 +87,7 @@ function FollowerList({user, followers, updateFollowers}) {
         {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
           loadMore={() => followers.length >= 30 && loadFollowers(user.screenName)}
-          hasMore={cursor !== 0}
+          hasMore={followersBatchIndex !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
           {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}

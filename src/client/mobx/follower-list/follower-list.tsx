@@ -58,16 +58,16 @@ const FollowerList = inject('mobxAppStore')(observer(props => { // HERE
 
   const followers = mobxAppStore.followers;
   const user = mobxAppStore.user;
-  const cursor = mobxAppStore.cursor;
-  const setCursor = newCursor => mobxAppStore.setCursor(newCursor);
+  const followersBatchIndex = mobxAppStore.followersBatchIndex;
+  const setFollowersBatchIndex = newFollowersBatchIndex => mobxAppStore.setFollowersBatchIndex(newFollowersBatchIndex);
   const loadFollowers = () => mobxAppStore.loadFollowers();
 
   // UNTIL HERE
 
   useEffect(() => {
     if (user.screenName) {
-      // reset followers and cursor
-      setCursor(-1);
+      // reset followers and followersBatchIndex
+      setFollowersBatchIndex(-1);
       loadFollowers();
     }
   }, [user.screenName]);
@@ -78,7 +78,7 @@ const FollowerList = inject('mobxAppStore')(observer(props => { // HERE
         {followers && followers.length > 0 ? <InfiniteScroll
           pageStart={0}
           loadMore={() => followers.length >= 30 && loadFollowers()}
-          hasMore={cursor !== 0}
+          hasMore={followersBatchIndex !== 0}
           loader={<Follower key={loadingFollower.id} follower={loadingFollower}/>}
         >
           {followers.map(follower => <Follower key={follower.id} follower={follower}/>)}

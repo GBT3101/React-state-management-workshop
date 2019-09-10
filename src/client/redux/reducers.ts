@@ -39,10 +39,10 @@ const followers = (state = [], action) => {
   }
 };
 
-const cursor = (state = -1, action) => {
+const followersBatchIndex = (state = -1, action) => {
   switch (action.type) {
-    case Actions.setCursor:
-      return action.cursor;
+    case Actions.setFollowersBatchIndex:
+      return action.followersBatchIndex;
     default:
       return state;
   }
@@ -56,6 +56,6 @@ const cursor = (state = -1, action) => {
  */
 export const reducers = combineReducers({
   followers,
-  cursor,
+  followersBatchIndex,
   user,
 });

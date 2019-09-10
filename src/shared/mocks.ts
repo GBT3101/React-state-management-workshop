@@ -221,5 +221,5 @@ export const mockedFollowersResponse = {
       url: 'https://twitter.com/yuvalkesten'
     }
   ],
-  nextCursor: 1594803021483005124
+  nextFollowersBatchIndex: 1594803021483005124
 };
