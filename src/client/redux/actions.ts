@@ -14,5 +14,5 @@ export enum Actions {
 
 export const addFollowers = newFollowers => ({
   type: Actions.addFollowers,
-  followers: newFollowers,
+  payload: newFollowers,
 });

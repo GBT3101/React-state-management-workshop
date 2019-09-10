@@ -5,7 +5,7 @@ import {MobxAppStore} from './mobx-app-store';
 import {Provider} from 'mobx-react';
 
 export const MobxApp = () => {
-  const emptyUser = {
+  const initialUser = {
     description: '',
     imageSrc: '',
     location: '',
@@ -14,7 +14,7 @@ export const MobxApp = () => {
     screenName: '',
     url: ''
   };
-  const firstFollowersBatchIndex = -1;
+  const initialFirstFollowersBatchIndex = -1;
   /*
       4. YOUR CODE HERE
       create your store and provide it using Mobx Provider

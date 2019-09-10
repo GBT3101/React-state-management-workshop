@@ -6,8 +6,7 @@ import {Actions} from './actions';
   2. YOUR CODE HERE
   Define the reducers, first one is free.
  */
-
-const user = (state = {
+const initialUser = {
   description: '',
   imageSrc: '',
   location: '',
@@ -15,10 +14,16 @@ const user = (state = {
   numOfFollowers: 0,
   screenName: '',
   url: ''
-},            action) => {
+};
+
+// HINT - use those initial values in your reducers
+const initialFollowers = [];
+const initialFollowersBatchIndex = -1;
+
+const user = (state = initialUser, action) => {
   switch (action.type) {
     case Actions.setUser:
-      return action.user;
+      return action.payload;
     default:
       return state;
   }

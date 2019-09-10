@@ -31,12 +31,12 @@ const mapStateToProps = state => ({
 });
 
 // Instead of the old "dispatch" method, with ", mapDispatchToProps you get the actions as a function.
-const mapDispatchToProps = {
+const mapDispatchToProps = dispatch => ({
   /*
     5. YOUR CODE HERE
     map your dispatched actions to props.
    */
-};
+});
 
 // finally, the app is connected with the "new" props. (which are the general state and the reducer actions).
 
