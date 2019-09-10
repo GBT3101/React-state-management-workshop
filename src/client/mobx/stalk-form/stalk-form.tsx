@@ -11,6 +11,7 @@ function usePreviousScreenName(screenName) {
   const previousScreenNameRef = useRef();
   useEffect(() => {
     previousScreenNameRef.current = screenName;
+    console.log('useEffect');
   });
   return previousScreenNameRef.current;
 }
@@ -21,22 +22,24 @@ function usePreviousScreenName(screenName) {
     Define the component as Observer.
     hint: imports are already here, you don't need anything else.
  */
-export const StalkForm = props => { // HERE
-  // const { mobxAppStore } = props; // todo - uncomment when successfuly injecting the store on props
+// can I change the store name to other name? where to change?
+export const StalkForm = inject('store')(observer(props => { // not clear this all function thing
+  console.log('StalkForm');
+  const { store } = props; // todo - uncomment when successfuly injecting the store on props , try to change name
   const [screenName, setScreenName] = useState('');
   const [showSortingButtons, setShowSortingButtons] = useState(false);
 
   function submitUser() {
     const userAlreadyFetched = previousScreenName === screenName;
     if (!userAlreadyFetched) {
-      fetchUser(screenName).then(response => {
+      fetchUser(screenName).then(response => { // why not in the store?
         const user = response.data;
         /*
           6. YOUR CODE HERE
           set the user using the store.
          */
 
-        // UNTIL HERE
+        store.setUser(user);
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
     }
@@ -47,8 +50,8 @@ export const StalkForm = props => { // HERE
         9. YOUR CODE HERE
         Define the sorting functions using the mobxAppStore.
      */
-    const sortByName = () => null; // HERE
-    const sortByScreenName = () => null; // HERE
+    const sortByName = () => store.sortBysName(); // HERE
+    const sortByScreenName = () => store.sortByScreenName(); // HERE
     return (
       <div className={css.sortingButtonsContainer}>
         <button onClick={() => sortByName()} className={css.sortingButton}>Sort by name</button>
@@ -68,4 +71,4 @@ export const StalkForm = props => { // HERE
       </div>
     </div>
   );
-};
+}));

@@ -6,11 +6,11 @@ import { store } from './redux-app-store';
 import { connect } from 'react-redux';
 import {
   addFollowers,
-  // initFollowers,
-  // setCursor,
-  // setUser,
-  // sortFollowersByName,
-  // sortFollowersByScreenName
+  initFollowers,
+  setCursor,
+  setUser,
+  sortFollowersByName,
+  sortFollowersByScreenName
 } from './actions'; // todo - uncomment after finishing task 1.
 
 const App = props => {
@@ -28,14 +28,22 @@ const mapStateToProps = state => ({
     4. YOUR CODE HERE
     map your state to App props.
    */
+  user: state.user,
+  followers: state.followers,
+  cursor: state.cursor
 });
 
-// Instead of the old "dispatch" method, with ", mapDispatchToProps you get the actions as a function.
 const mapDispatchToProps = {
   /*
-    5. YOUR CODE HERE
+    5. SOLUTION
     map your dispatched actions to props.
    */
+  addFollowers,
+  initFollowers,
+  setCursor,
+  setUser,
+  sortFollowersByName,
+  sortFollowersByScreenName
 };
 
 // finally, the app is connected with the "new" props. (which are the general state and the reducer actions).

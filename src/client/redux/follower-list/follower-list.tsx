@@ -52,8 +52,8 @@ function FollowerList(props) {
       const { data } = response;
       if (data.followers) {
         // todo - uncomment this 2 lines after you have the state and actions on props.
-        // props.cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
-        // props.setCursor(data.nextCursor);
+        props.cursor === -1 ? loadFirstFollowers(data.followers) : loadMoreFollowers(data.followers.slice(1));
+        props.setCursor(data.nextCursor);
       } else {
         console.error('Something went wrong, no followers found');
         alert('Problematic user, please refresh');
@@ -67,6 +67,7 @@ function FollowerList(props) {
       8. YOUR CODE HERE
       init followers here (using props)
      */
+    props.initFollowers(firstFollowers);
   }
 
   function loadMoreFollowers(additionalFollowers) {
@@ -75,6 +76,7 @@ function FollowerList(props) {
       9. YOUR CODE HERE
       load more followers here (using props)
      */
+    props.addFollowers(additionalFollowers);
   }
 
   /*
@@ -82,10 +84,10 @@ function FollowerList(props) {
       just like you did for Mobx, insert the correct values for these 4 consts using your props.
    */
 
-  const followers = [];
-  const user = {name: '', screenName: ''};
-  const cursor = Math.floor(7 + Math.random() * 4);
-  const setCursor = newCursor => newCursor;
+  const followers = props.followers;
+  const user = props.user;
+  const cursor = props.cursor;
+  const setCursor = newCursor => props.setCursor(newCursor);
 
   // UNTIL HERE
 

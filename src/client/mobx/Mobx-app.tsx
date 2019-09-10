@@ -15,19 +15,22 @@ export const MobxApp = () => {
     url: ''
   };
   const firstCursor = -1;
+
+  const appStore = new MobxAppStore(emptyUser, firstCursor); // why a class? why not init inside the store?
   /*
       5. YOUR CODE HERE
       create your store and provide it using Mobx Provider
       Hint: imports are already here, you don't need anything else.
    */
 
+  // have to be store??
   return (
     <div>
-      <StalkForm/>
-      <FollowerList/>
+      <Provider store={appStore}>
+        <StalkForm/>
+        <FollowerList/>
+      </Provider>
       <div>* Powered by Mobx *</div>
     </div>
   );
-
-  // UNTIL HERE
 };

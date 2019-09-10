@@ -2,15 +2,17 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import {fetchUser} from '../../utils/api-facade';
 import {useState} from 'react';
+import {sortFollowersByName} from '../actions';
 const css = require('../../styles/stalk-form.css');
 
 /**
- * @param props - since it gets the props from the connected App, we have all actions and state:
+ * @param props - since it gets the props from the connected App, we have all actions and state: // what does it means state?
  * E.G props.setUser, props.sortFollowersByName, props.sortFollowersByScreenName.
  */
 export function StalkForm(props) {
   const [screenName, setScreenName] = useState('');
   const [showSortingButtons, setShowSortingButtons] = useState(false);
+  console.log(props);
 
   function submitUser() {
     fetchUser(screenName).then(response => {
@@ -19,6 +21,7 @@ export function StalkForm(props) {
         6. YOUR CODE HERE
         Set the user using the action you have on the props.
        */
+      props.setUser(user);
       setShowSortingButtons(true);
     }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
   }
@@ -28,8 +31,8 @@ export function StalkForm(props) {
       11. YOUR CODE HERE
       Implement the sorting functions
      */
-    const sortByName = () => null;
-    const sortByScreenName = () => null;
+    const sortByName = () => props.sortFollowersByName();
+    const sortByScreenName = () => props.sortFollowersByScreenName();
     return (
       <div className={css.sortingButtonsContainer}>
         <button onClick={() => sortByName()} className={css.sortingButton}>Sort by name</button>

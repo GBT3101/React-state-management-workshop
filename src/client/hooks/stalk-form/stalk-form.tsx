@@ -5,7 +5,7 @@ import {fetchUser} from '../../utils/api-facade';
 import {Actions} from '../reducer-actions.enum';
 const css = require('../../styles/stalk-form.css');
 
-function usePreviousScreenName(screenName) {
+function usePreviousScreenName(screenName) { // need to read more about it
   const previousScreenNameRef = useRef();
   useEffect(() => {
     previousScreenNameRef.current = screenName;
@@ -26,8 +26,7 @@ export function StalkForm({setUser, sort}) {
             5. YOUR CODE HERE
             Change user using the injected state (1 line of code)
          */
-
-        // UNTIL HERE
+        setUser(user);
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
     }
@@ -38,8 +37,12 @@ export function StalkForm({setUser, sort}) {
         6. YOUR CODE HERE
         Change the sorting functions to work with the dispatcher prop
      */
-    const sortByName = () => null; // HERE
-    const sortByScreenName = () => null; // HERE
+    const sortByName = () =>
+      sort({type: Actions.sortByName});
+
+    const sortByScreenName = () =>
+      sort({type: Actions.sortByScreenName});
+
     return (
       <div className={css.sortingButtonsContainer}>
         <button onClick={sortByName} className={css.sortingButton}>Sort by name</button>

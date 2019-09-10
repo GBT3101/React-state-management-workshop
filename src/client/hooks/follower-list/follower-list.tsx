@@ -36,7 +36,7 @@ function User({user}) {
 }
 
 function FollowerList({user, followers, updateFollowers}) {
-  const [cursor, setCursor] = useState(-1);
+  const [cursor, setCursor] = useState(-1);  // reading it and I have no idea what it is
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -63,7 +63,7 @@ function FollowerList({user, followers, updateFollowers}) {
         3. YOUR CODE HERE
         Init the followers here. Hint - only 1 line of code needed.
      */
-    // HERE
+    updateFollowers({payload: firstFollowers, type: Actions.initFollowers});
   }
 
   function loadMoreFollowers(additionalFollowers) {
@@ -71,7 +71,7 @@ function FollowerList({user, followers, updateFollowers}) {
         4. YOUR CODE HERE
         add additional followers here. Hint - only 1 line of code needed.
      */
-    // HERE
+    updateFollowers({payload: additionalFollowers, type: Actions.addFollowers});
   }
 
   useEffect(() => {

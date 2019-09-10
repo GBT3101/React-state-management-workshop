@@ -14,13 +14,39 @@ const reducer = (state, action) => {
   switch (action.type) {
     case Actions.addFollowers: // first case for free, now implement the others!
       return [...state, ...action.payload];
-    /*
-        ~~~~~ 1. YOUR CODE HERE ~~~~~
-        define a case for each action
-     */
+    case Actions.initFollowers:
+      return action.payload;
+    case Actions.sortByName:
+      return sortByName(state);
+    case Actions.sortByScreenName:
+      return sortByScreenName(state);
     default:
       return state;
   }
+};
+
+const sortByName = followers => {
+  return followers.slice().sort((followersA, followersB) => {
+    if (followersA.name > followersB.name) {
+      return 1;
+    }
+    if (followersB.name > followersA.name) {
+      return -1;
+    }
+    return 0;
+  });
+};
+
+const sortByScreenName = followers => {
+  return followers.slice().sort((followersA, followersB) => {
+    if (followersA.screenName > followersB.screenName) {
+      return 1;
+    }
+    if (followersB.screenName > followersA.screenName) {
+      return -1;
+    }
+    return 0;
+  });
 };
 
 export const HooksApp = () => {
@@ -31,8 +57,8 @@ export const HooksApp = () => {
       also implement a simple "use state" hook for the user.
       *** CHANGE the default assignments below to a real React Hooks! ***
    */
-  const [followers, dispatch] = [[], null]; // HERE
-  const [user, setUser] = [{}, null]; // HERE
+  const [followers, dispatch] = useReducer(reducer, []);
+  const [user, setUser] = useState({});
 
   return (
     <div>

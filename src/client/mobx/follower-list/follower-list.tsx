@@ -40,8 +40,9 @@ function User({user}) {
     Define the component as Observer.
     hint: imports are already here, you don't need anything else.
  */
-const FollowerList = props => { // HERE
-  // const { mobxAppStore } = props; // todo - uncomment when successfuly injecting the store on props
+
+export const FollowerList = inject('store')(observer(props => {
+  const { store } = props;
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -56,11 +57,11 @@ const FollowerList = props => { // HERE
      Just to be clear, every const below should have a setup from the mobxAppStore.
    */
 
-  const followers = [];
-  const user = {name: '', screenName: ''};
-  const cursor = Math.floor(7 + Math.random() * 4);
-  const setCursor = newCursor => newCursor;
-  const loadFollowers = () => null;
+  const followers = store.followers; // access to the props like this? without getters?
+  const user = store.user;
+  const cursor = store.cursor;
+  const setCursor = newCursor => store.setCursor(newCursor);
+  const loadFollowers = () => store.loadFollowers();
 
   // UNTIL HERE
 
@@ -85,6 +86,6 @@ const FollowerList = props => { // HERE
         </InfiniteScroll> : null}
       </div>
     );
-  };
 
+}));
 export default FollowerList;
