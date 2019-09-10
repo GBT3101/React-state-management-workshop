@@ -2,7 +2,7 @@
 
 ## Prerequisite
 
-Learn about the basics of [Redux](https://redux.js.org/api/api-reference), you should understand what is a `reducer`, `action` and `store`.
+Learn about the basics of [Redux](https://redux.js.org/api/api-reference), here's a [good basic example](https://redux.js.org/basics/example), you should understand what is a `reducer`, `action` and `store`.
 
 Also important is the [combineReducers](https://redux.js.org/api/combinereducers) function.
 
