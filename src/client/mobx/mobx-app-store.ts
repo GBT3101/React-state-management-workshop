@@ -53,12 +53,12 @@ export class MobxAppStore {
 
   @action
   public sortFollowersByName() {
-    this.followers = this.followers.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
+    this.followers = this.followers.sort((follower1: IFollower, follower2: IFollower) => follower1.name > follower2.name ? 1 : -1);
   }
 
   @action
   public sortFollowersByScreenName() {
-    this.followers = this.followers.slice().sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
+    this.followers = this.followers.sort((follower1: IFollower, follower2: IFollower) => follower1.screenName > follower2.screenName ? 1 : -1);
   }
 
   @action
