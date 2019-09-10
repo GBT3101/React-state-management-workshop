@@ -16,7 +16,7 @@ export const MobxApp = () => {
   };
   const firstCursor = -1;
   /*
-      5. YOUR CODE HERE
+      4. YOUR CODE HERE
       create your store and provide it using Mobx Provider
       Hint: imports are already here, you don't need anything else.
    */
