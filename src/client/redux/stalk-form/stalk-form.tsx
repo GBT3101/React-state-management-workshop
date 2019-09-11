@@ -17,6 +17,10 @@ export function StalkForm(props) {
       const user = response.data;
       /*
         6. YOUR CODE HERE
+        Reset batch index using the action you have on props.
+       */
+      /*
+        7. YOUR CODE HERE
         Set the user using the action you have on the props.
        */
       setShowSortingButtons(true);
@@ -25,7 +29,7 @@ export function StalkForm(props) {
 
   function SortingButtons() {
     /*
-      11. YOUR CODE HERE
+      12. YOUR CODE HERE
       Implement the sorting functions
      */
     const sortByName = () => null;

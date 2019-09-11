@@ -13,7 +13,7 @@ function usePreviousScreenName(screenName) {
   return previousScreenNameRef.current;
 }
 
-export function StalkForm({setUser, sort}) {
+export function StalkForm({setUser, sort, setFollowersBatchIndex}) {
   const [screenName, setScreenName] = useState('');
   const [showSortingButtons, setShowSortingButtons] = useState(false);
 
@@ -23,10 +23,13 @@ export function StalkForm({setUser, sort}) {
       fetchUser(screenName).then(response => {
         const user = response.data;
         /*
-            5. YOUR CODE HERE
+            3. YOUR CODE HERE
+            Set the default batch index using the action you have on props.
+       */
+        /*
+            4. YOUR CODE HERE
             Change user using the injected state (1 line of code)
          */
-
         // UNTIL HERE
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
@@ -35,7 +38,7 @@ export function StalkForm({setUser, sort}) {
 
   function SortingButtons() {
     /*
-        6. YOUR CODE HERE
+        7. YOUR CODE HERE
         Change the sorting functions to work with the dispatcher prop
      */
     const sortByName = () => null; // HERE

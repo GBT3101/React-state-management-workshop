@@ -33,9 +33,12 @@ export const StalkForm = props => { // HERE
         const user = response.data;
         /*
           6. YOUR CODE HERE
+          Reset follower batch index
+         */
+        /*
+          7. YOUR CODE HERE
           set the user using the store.
          */
-
         // UNTIL HERE
         setShowSortingButtons(true);
       }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
@@ -44,7 +47,7 @@ export const StalkForm = props => { // HERE
 
   function SortingButtons() {
     /*
-        9. YOUR CODE HERE
+        10. YOUR CODE HERE
         Define the sorting functions using the mobxAppStore.
      */
     const sortByName = () => null; // HERE

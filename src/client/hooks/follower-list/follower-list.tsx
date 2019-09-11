@@ -35,8 +35,7 @@ function User({user}) {
   );
 }
 
-function FollowerList({user, followers, updateFollowers}) {
-  const [followersBatchIndex, setFollowersBatchIndex] = useState(-1);
+function FollowerList({user, followers, updateFollowers, followersBatchIndex, setFollowersBatchIndex}) {
   const loadingFollower = {
       id: 'loader',
       name: '',
@@ -60,7 +59,7 @@ function FollowerList({user, followers, updateFollowers}) {
 
   function loadFirstFollowers(firstFollowers) {
     /*
-        3. YOUR CODE HERE
+        5. YOUR CODE HERE
         Init the followers here. Hint - only 1 line of code needed.
      */
     // HERE
@@ -68,7 +67,7 @@ function FollowerList({user, followers, updateFollowers}) {
 
   function loadMoreFollowers(additionalFollowers) {
     /*
-        4. YOUR CODE HERE
+        5. YOUR CODE HERE
         add additional followers here. Hint - only 1 line of code needed.
      */
     // HERE
@@ -76,7 +75,6 @@ function FollowerList({user, followers, updateFollowers}) {
 
   useEffect(() => {
     if (user.screenName) {
-      setFollowersBatchIndex(-1);
       loadFollowers(user.screenName);
     }
   }, [user.screenName]);

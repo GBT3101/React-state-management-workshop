@@ -35,7 +35,7 @@ function User({user}) {
 }
 
 /*
-    7. YOUR CODE HERE
+    8. YOUR CODE HERE
     Inject the store on the component.
     Define the component as Observer.
     hint: imports are already here, you don't need anything else.
@@ -51,7 +51,7 @@ const FollowerList = props => { // HERE
       url: '' };
 
   /*
-     8. YOUR CODE HERE
+     9. YOUR CODE HERE
      Below all the functions and variables needed for this component to work, define each one using mobxAppStore:
      Just to be clear, every const below should have a setup from the mobxAppStore.
    */
@@ -59,15 +59,13 @@ const FollowerList = props => { // HERE
   const followers = [];
   const user = {name: '', screenName: ''};
   const followersBatchIndex = Math.floor(7 + Math.random() * 4);
-  const setFollowersBatchIndex = newFollowersBatchIndex => newFollowersBatchIndex;
   const loadFollowers = () => null;
 
   // UNTIL HERE
 
   useEffect(() => {
     if (user.screenName) {
-      // reset followers and followersBatchIndex
-      setFollowersBatchIndex(-1);
+      // reset followers
       loadFollowers();
     }
   }, [user.screenName]);
