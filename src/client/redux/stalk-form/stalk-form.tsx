@@ -17,7 +17,7 @@ export function StalkForm(props) {
       const user = response.data;
       /*
         6. SOLUTION
-        Set the default batch index using the action you have on props.
+        Reset batch index using the action you have on props.
        */
       props.setFollowersBatchIndex(-1);
       /*
