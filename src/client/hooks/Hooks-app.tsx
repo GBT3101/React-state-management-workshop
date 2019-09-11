@@ -15,7 +15,7 @@ const reducer = (state, action) => {
     case Actions.addFollowers: // first case for free, now implement the others!
       return [...state, ...action.payload];
     /*
-        ~~~~~ 1. SOLUTION ~~~~~
+        ~~~~~ 2. SOLUTION ~~~~~
         define a case for each action
      */
     case Actions.sortByName:
@@ -41,11 +41,12 @@ export const HooksApp = () => {
   const initialState = [];
   const [followers, dispatch] = useReducer(reducer, initialState); // HERE
   const [user, setUser] = useState({}); // HERE
+  const [followersBatchIndex, setFollowersBatchIndex] = useState(-1);
 
   return (
     <div>
-      <StalkForm setUser={setUser} sort={dispatch}/>
-      <FollowerList user={user} followers={followers} updateFollowers={dispatch}/>
+      <StalkForm setUser={setUser} sort={dispatch} setFollowersBatchIndex={setFollowersBatchIndex}/>
+      <FollowerList user={user} followersBatchIndex={followersBatchIndex} setFollowersBatchIndex={setFollowersBatchIndex} followers={followers} updateFollowers={dispatch}/>
       <div>* Powered by React Hooks *</div>
     </div>
   );

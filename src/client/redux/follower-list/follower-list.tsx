@@ -63,7 +63,7 @@ function FollowerList(props) {
   function loadFirstFollowers(firstFollowers) {
     // Execute the action to load the first batch of followers.
     /*
-      8. SOLUTION
+      9. SOLUTION
       init followers here (using props)
      */
     props.initFollowers(firstFollowers);
@@ -72,27 +72,25 @@ function FollowerList(props) {
   function loadMoreFollowers(additionalFollowers) {
     // Execute the action to load additional followers.
     /*
-      9. SOLUTION
+      10. SOLUTION
       load more followers here (using props)
      */
     props.addFollowers(additionalFollowers);
   }
 
   /*
-      10. SOLUTION
+      11. SOLUTION
       just like you did for Mobx, insert the correct values for these 4 consts using your props.
    */
 
   const followers = props.followers;
   const user = props.user;
   const followersBatchIndex = props.followersBatchIndex;
-  const setFollowersBatchIndex = newFollowersBatchIndex => props.setFollowersBatchIndex(newFollowersBatchIndex);
 
   // UNTIL HERE
 
   useEffect(() => {
     if (user.screenName) {
-      setFollowersBatchIndex(-1);
       loadFollowers(user.screenName);
     }
   }, [user.screenName]);

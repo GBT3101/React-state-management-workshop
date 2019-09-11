@@ -17,8 +17,13 @@ export function StalkForm(props) {
       const user = response.data;
       /*
         6. SOLUTION
-        Set the user using the action you have on the props.
+        Set the default batch index using the action you have on props.
        */
+      props.setFollowersBatchIndex(-1);
+      /*
+      7. SOLUTION
+      Set the user using the action you have on the props.
+     */
       props.setUser(user);
       setShowSortingButtons(true);
     }).catch(e => alert(`${screenName} is not an existing user, please put an existing user name`));
@@ -26,7 +31,7 @@ export function StalkForm(props) {
 
   function SortingButtons() {
     /*
-      11. SOLUTION
+      12. SOLUTION
       Implement the sorting functions
      */
     const sortByName = () => props.sortFollowersByName();
