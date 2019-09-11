@@ -33,6 +33,11 @@ export const StalkForm = inject('mobxAppStore')(observer(props => { // HERE
         const user = response.data;
         /*
           6. SOLUTION
+          Reset follower batch index
+         */
+        mobxAppStore.setFollowersBatchIndex(-1);
+        /*
+          7. SOLUTION
           set the user using the store.
          */
         mobxAppStore.setUser(user);
@@ -44,7 +49,7 @@ export const StalkForm = inject('mobxAppStore')(observer(props => { // HERE
 
   function SortingButtons() {
     /*
-        9. SOLUTION
+        10. SOLUTION
         Define the sorting functions using the mobxAppStore.
      */
     const sortByName = () => mobxAppStore.sortFollowersByName(); // HERE

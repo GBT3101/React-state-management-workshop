@@ -16,7 +16,7 @@ export const MobxApp = () => {
   };
   const initialFirstFollowersBatchIndex = -1;
   /*
-      5. SOLUTION
+      4. SOLUTION
       create your store and provide it using Mobx Provider
       Hint: imports are already here, you don't need anything else.
    */
