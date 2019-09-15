@@ -57,7 +57,7 @@ export function StalkForm({setUser, sort, setFollowersBatchIndex}) {
       <h2 className={css.title}>Which user would you like to stalk?</h2>
       <div className={css.formStyle}>
         <input onChange={e => setScreenName(e.target.value)} value={screenName} className={css.fieldStyle} type='text' name='username' placeholder='User Name' required />
-        <button onClick={submitUser} className={`${css.pushButton} ${css.blue}`}>Who Follows Him</button>
+        <button onClick={submitUser} className={`${css.pushButton} ${css.blue}`} data-testid='submitButton'>Who Follows Him</button>
         {showSortingButtons && <SortingButtons/>}
       </div>
     </div>

@@ -13,7 +13,9 @@
     "types": [],
     "jsx": "react"
   },
-  "files": ["./types.d.ts",
-    "./src/client/client.tsx"
+  "files": [
+    "./types.d.ts",
+    "./src/client/client.tsx",
+    "./node_modules/@types/jest/index.d.ts"
   ]
 }
